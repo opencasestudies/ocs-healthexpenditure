@@ -1,0 +1,30 @@
+---
+title: OpenCaseStudies Template
+output: 
+    html_document:
+        theme: cosmo 
+        toc: true
+        toc_float: true
+        highlight: tango
+        number_sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Motivation 
+
+# What is the data? 
+
+# Data import
+
+# Data wrangling 
+
+# Exploratory data analysis
+
+# Data analysis 
+
+# Summary of results
+
+
