@@ -1,0 +1,90 @@
+---
+title: OpenCaseStudies - Health Expenditure   
+output: 
+    html_document:
+        theme: cosmo 
+        toc: true
+        toc_float: true
+        highlight: tango
+        number_sections: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Motivation  
+
+The question of interest is the relationship between 
+health expenditure and life expectancy. More specifically,
+the quesiton is "Is there a relationship between 
+healthcare coverage and healthcare spending across regions 
+in the United States?"
+  
+Q1: More specific questions?   
+
+In the real world, we do not have a perfect data for 
+this. 
+ 
+* What is life life expectancy?    
+- "Life expectancy is a statistical measure of the average time 
+an organism is expected to live, based on the year of its birth, 
+its current age and other demographic factors including gender."
+[From Wikipedia](https://en.wikipedia.org/wiki/Life_expectancy)
+- It can be calculated in different ways.    
+
+Q2: Life expectancy data in the class, but should we go deep?  
+ 
+# What is the data? 
+- challenge:  
+"https://www.kff.org/other/state-indicator/total-population/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D"
+
+  
+  
+Q3: Unable to find the link directly (Should we address this?) 
+(Screenshot demonstration?)     
+
+
+ * [Health Insurance Coverage of the Total Population](https://www.kff.org/other/state-indicator/total-population/) - Includes years 2013-2016
+* [Health Care Expenditures by State of Residence (in millions)](https://www.kff.org/other/state-indicator/health-care-expenditures-by-state-of-residence-in-millions/) - Includes years 1991-2014
+* [Life Expectancy at Birth (in years)](https://www.kff.org/other/state-indicator/life-expectancy)    
+
+# Data import
+Show data downloading.   
+
+
+Q4: Should "data downloading" proceess be showed in "What is the 
+data?" or "Data import?" ? If it is "Data import," what does  
+"What is the data" mean? 
+
+ 
+# Data wrangling 
+* Introducing readr function    
+- Mention "read_csv" is faster than "read.csv"   
+  
+Q5: Should we do introduce some nuance between them? (
+ex: use `Sys.time()` function to demonstrate? )           
+
+- similar issue: `load` versus `library`    
+* Introducing tidy verse function    
+    
+# Exploratory data analysis 
+Exploratory plots   
+Q6: How many exporatory plots should be enough? (
+No exact number, but do we have a range?)  
+
+# Data analysis    
+Q7: Should we skip this in this project? If not, 
+what would you like to do? (Concerns: we many not have
+other variables if we want to do modeling)  
+   
+# Summary of results
+- Interpretation is based on the exlporatory analysis?            
+- Limitations   
+(1) Meaning of life expectancy   
+(2) What does health expenditure stand for?   
+(3) Health expenditure = quality of care?     
+(4) Health expenditure = poor choice of medical care package?   
+(5) Health expenditure = proxy for SES?   
+(6) Potential ecological fallacy?        
+...   
