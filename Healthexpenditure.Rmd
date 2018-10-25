@@ -15,15 +15,20 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Motivation  
 
-The question of interest is the relationship between 
-health expenditure and life expectancy. More specifically,
+Health policy in the Staes is complicated, and several forms of healthcare 
+coverage existed in the United States of America, including both federal goverment-led 
+healthcare policy, and private insurance company. Before making any inference about 
+the relationship between health condition and health policy, it is important for us to 
+have a general idea about healthcare economics in the States. Thus, We are interested in 
+getting sense of the health expenditure, including healthcare coverage and 
+healthcare spending, across States.  More specifically,
 the quesiton are   
 
 1. Is there a relationship between healthcare coverage and healthcare spending in the United States?   
-2. Which US states spend the most and which spend the least on healthcare? How does the spending distribution change across geographic regions in the Unied States?  
+2. How does the spending distribution change across geographic regions in the Unied States?  
 
  
-# What is the data? 
+# Data Source   
 
 ```{r out.width = "95%", echo = FALSE, out.width='90%'}
 knitr::include_graphics("https://aspe.hhs.gov/system/files/images-reports-basic/70441/fig1.jpg")
@@ -37,12 +42,15 @@ We will be using the data from the [Henry J Kaiser Family Foundation (KFF)](http
 * [Health Insurance Coverage of the Total Population](https://www.kff.org/other/state-indicator/total-population/) - Includes years 2013-2016
 * [Health Care Expenditures by State of Residence (in millions)](https://www.kff.org/other/state-indicator/health-care-expenditures-by-state-of-residence-in-millions/) - Includes years 1991-2014
  
-We have downloaded, re-named and saved these files in our course 
+We have downloaded, re-named and saved these files in the 
 GitHub repository under the `data/KFF/` directory. 
 
 Now, before we dig into the data analysis, we need to introduce 
 a set of R packages that we will use to analyze the data. 
 
+
+# Data Import 
+ 
 ## Welcome to the "Tidyverse"
 
 The [tidyverse](https://www.tidyverse.org) is _"an opinionated 
@@ -53,7 +61,7 @@ Another way of putting it is that it's a set of packages
 that are useful specifically for data manipulation, 
 exploration and visualization with a common philosphy. 
 
-### What is this common philosphy? 
+## What is this common philosphy? 
 
 The common philosphy is called _"tidy"_ data. It is 
 a standard way of mapping the meaning of a dataset
@@ -83,7 +91,7 @@ process more efficient and simplifies the development of data analysis tools
 that work together. In this way, you can focus on the problem you are
 investigating, rather than the uninteresting logistics of data.  
 
-### What is in the `tidyverse`? 
+## What is in the `tidyverse`? 
 
 We can install and load the set of R packages using 
 `install.packages("tidyverse")` function. 
@@ -120,8 +128,6 @@ and to wrangle data.
 
 Next, we will give a brief description of the 
 features in each of these packages. 
-
-# Data Import
 
 There are several base R functions that allow you 
 read in data into R, which you may be familiar 
@@ -167,7 +173,7 @@ If we want to see what the header of the file looks like,
 we can use the `read_lines()` function to peak at the 
 first few lines. 
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 read_lines(file = "./data/KFF/healthcare-coverage.csv", n_max = 10)
 ```
 
@@ -190,7 +196,7 @@ there are a bunch of NAs in the end of the data
 frame because most of it isn't useful data. 
 
 Let's take a closer look at the last 30 lines
-```{r}
+```{r warning=FALSE,message=FALSE}
 tail(coverage, n=30)
 ```
 
@@ -210,7 +216,7 @@ tail(coverage)
 
 That's better! 
 
-### Read in healthcare spending data
+## Read in healthcare spending data
 
 Now because we are also going to want to 
 use in `healthcare-spending.csv`, let's 
@@ -246,7 +252,7 @@ It's kind of like `print()` where it shows you
 columns running down the page. Let's try it out. 
 If we look at our data, say the `coverage` 
 data frame, we see that it is not _"tidy"_: 
-```{r}
+```{r warning=FALSE,message=FALSE}
 glimpse(coverage)
 ```
 
@@ -347,7 +353,7 @@ A [`tidyr` cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-w
 for the functions in the `tidyr` package can be 
 found on RStudio's website: 
 
-### Convert healthcare coverage data to a tidy format
+## Convert healthcare coverage data to a tidy format
 
 Let's start by looking at the `gather()` help file
 
@@ -383,7 +389,7 @@ explore how to do that in the Data Wrangling section
 below. For now let's learn more about the `tidyr` 
 package. 
 
-#### Convert back to a wide format
+## Convert back to a wide format
 
 In contrast to *gathering* multiple columns into key-value pairs, we can 
 *spread* a key-value pair across multiple columns.  
@@ -402,7 +408,7 @@ multiple columns
 spread(coverage, year_type, tot_coverage)
 ```
 
-### Convert healthcare spending data to a tidy format
+## Convert healthcare spending data to a tidy format
 
 Let's do the same for the `spending` data. In this 
 case I will use `year` and `spending` for
@@ -438,7 +444,7 @@ hard to get used to. We will therefore introducing
 a package that makes the syntax much more like 
 the English language. This package is `dplyr`. 
 
-### The `dplyr` R package
+## The `dplyr` R package
 
 [`dplyr`](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) 
 is a powerful R-package to transform and summarize 
@@ -455,7 +461,7 @@ perform another common task which is the is the
 "split-apply-combine" concept.  We will discuss 
 that in a little bit. 
 
-#### How does it compare to using base functions R?
+## How does it compare to using base functions R?
 
 If you are familiar with R, you are probably familiar 
 with base R functions such as `split()`, `subset()`, 
@@ -478,7 +484,7 @@ The important `dplyr` verbs to remember are:
 
 
 
-#### Pipe operator: %>%
+## Pipe operator: %>%
 
 Before we go any futher, let's introduce the 
 pipe operator: `%>%`. In our `stocks` example,
@@ -556,14 +562,11 @@ The `coverage` data looks good now. We see
 that there are different `year`s and different 
 `types` of healthcare coverage. 
 
-#### Excercise 
-
+## Exercise - table 
 What is the range of years and types of healthcare
 in the `coverage` dataset? 
 
 ```{r}
-## add your code here
-
 table(coverage$type, coverage$year)
 ```
 
@@ -584,7 +587,7 @@ The two most basic functions are `select()` and
 `filter()` which selects columns and filters 
 rows, respectively. 
 
-##### Selecting columns using `select()`
+## Selecting columns using `select()`
 
 In the `separate()` function, we create two
 new columns called `year` and `name`. Then, 
@@ -593,7 +596,7 @@ we ask to return all the columns, except
 specific column, use the "-" (subtraction) operator 
 (also known as negative indexing). 
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 spending <- 
   spending %>% 
   separate(year, sep="__", into=c("year", "name"), convert = TRUE) %>% 
@@ -605,7 +608,7 @@ The function `select()` is much more
 powerful though. To select a range 
 of columns by name, use the ":" (colon) operator
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 coverage %>% 
   select(year:type)
 ```
@@ -613,7 +616,7 @@ coverage %>%
 To select all columns that start with the 
 character string "t", use the function `starts_with()`
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 coverage %>% 
   select(starts_with("t"))
 ```
@@ -631,14 +634,14 @@ regular expression
 from a group of names
 
 
-##### Selecting rows using `filter()`
+## Selecting rows using `filter()`
 
 Let's say we want to know how many peopled 
 had health insurance coverage in Maryland? 
 
 First, we can filter the rows for years in 2007. 
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 coverage %>% 
   filter(Location == "Maryland")
 ```
@@ -650,21 +653,19 @@ to create logical tests.
 For example, if we wanted only years 
 after 2014, we can add a second criteria: 
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 coverage %>% 
   filter(Location == "Maryland", 
          year > 2014)
 ```
 
-##### Excercise 
+## Exercise: %>%, filter     
 
 Has the number of uninsured has
 increased or decreased in Maryland 
 between 2013 and 2016? 
 
-```{r}
-## add your code here
-
+```{r warning=FALSE,message=FALSE}
 coverage %>% 
   filter(Location == "Maryland", 
          type == "Uninsured")
@@ -673,19 +674,19 @@ coverage %>%
 What happened between 2013 and 2014? 
 [Hint](https://en.wikipedia.org/wiki/Patient_Protection_and_Affordable_Care_Act)
 
-##### Arrange or re-order rows using `arrange()`
+## Arrange or re-order rows using `arrange()`
 
 Now, let's say we want to see which states has the To arrange (or re-order) rows by a particular 
 column such as the population, list the name of 
 the column you want to arrange the rows by
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 coverage %>% 
     arrange(tot_coverage)
 ```
 
 
-##### Exercise 
+## Exercise - filter, desc,arrange   
 
 In 2016, what were the top three states with 
 the largest `Employer` type of healthcare 
@@ -694,52 +695,10 @@ coverage?
 **Hint**: use the `desc()` function inside of
 `arrange()` to order rows in a descending order. 
 
-```{r}
-## add your code here
-
+```{r warning=FALSE,message=FALSE}
 coverage %>% 
   filter(Location != "United States", year == 2016, type == "Employer") %>% 
   arrange(desc(tot_coverage)) %>% 
   head(n=3)
 ```
 
-
-# Data import
-Show data downloading.   
-
-
-Q4: Should "data downloading" proceess be showed in "What is the 
-data?" or "Data import?" ? If it is "Data import," what does  
-"What is the data" mean? 
-
- 
-# Data wrangling 
-* Introducing readr function    
-- Mention "read_csv" is faster than "read.csv"   
-  
-Q5: Should we do introduce some nuance between them? (
-ex: use `Sys.time()` function to demonstrate? )           
-
-- similar issue: `load` versus `library`    
-* Introducing tidy verse function    
-    
-# Exploratory data analysis 
-Exploratory plots   
-Q6: How many exporatory plots should be enough? (
-No exact number, but do we have a range?)  
-
-# Data analysis    
-Q7: Should we skip this in this project? If not, 
-what would you like to do? (Concerns: we many not have
-other variables if we want to do modeling)  
-   
-# Summary of results
-- Interpretation is based on the exlporatory analysis?            
-- Limitations   
-(1) Meaning of life expectancy   
-(2) What does health expenditure stand for?   
-(3) Health expenditure = quality of care?     
-(4) Health expenditure = poor choice of medical care package?   
-(5) Health expenditure = proxy for SES?   
-(6) Potential ecological fallacy?        
-...   
