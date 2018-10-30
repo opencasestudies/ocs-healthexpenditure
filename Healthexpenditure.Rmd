@@ -51,7 +51,7 @@ a set of R packages that we will use to analyze the data.
 
 # Data Import 
  
-## Welcome to the "Tidyverse"
+## 1. Introduction to "Tidy data"
 
 The [tidyverse](https://www.tidyverse.org) is _"an opinionated 
 collection of R packages designed for data science. All packages 
@@ -61,7 +61,7 @@ Another way of putting it is that it's a set of packages
 that are useful specifically for data manipulation, 
 exploration and visualization with a common philosphy. 
 
-## What is this common philosphy? 
+### (1) What is this common philosphy? 
 
 The common philosphy is called _"tidy"_ data. It is 
 a standard way of mapping the meaning of a dataset
@@ -91,7 +91,7 @@ process more efficient and simplifies the development of data analysis tools
 that work together. In this way, you can focus on the problem you are
 investigating, rather than the uninteresting logistics of data.  
 
-## What is in the `tidyverse`? 
+### (2) What is in the `tidyverse`? 
 
 We can install and load the set of R packages using 
 `install.packages("tidyverse")` function. 
@@ -145,7 +145,11 @@ time, etc)
 3. All parsing problems are recordered in 
 a data frame. 
 
-## The `readr` R package
+## 2. The `readr` R package for reading healthcare coverage and spending information 
+
+```{r, message=FALSE}
+library(readr)
+```
 
 The main functions in `readr` are: 
 
@@ -164,7 +168,8 @@ A useful cheatsheet for the functions in the
 ![](https://www.rstudio.com/wp-content/uploads/2018/08/data-import.png)
 
 
-## Read in healthcare coverage data
+
+### (1) Read in healthcare coverage data
 
 Let's try reading in some data. We will begin by
 reading in the `healthcare-coverage.csv` data. 
@@ -216,7 +221,7 @@ tail(coverage)
 
 That's better! 
 
-## Read in healthcare spending data
+### (2) Read in healthcare spending data
 
 Now because we are also going to want to 
 use in `healthcare-spending.csv`, let's 
@@ -232,7 +237,7 @@ tail(spending)
 ```
 
 
-## Take a `glimpse()` at your data
+### (3) Take a `glimpse()` at your data
 
 One last thing in this section. 
 One way to look at our data would be to use 
@@ -256,9 +261,52 @@ data frame, we see that it is not _"tidy"_:
 glimpse(coverage)
 ```
 
+## 3. Load the State information: the `datasets` R package 
 
-## Data Tidying
+Since our goal is to get sense of the health expenditure, including healthcare coverage and 
+healthcare spending, **across States**, 
+it would be nice add some information about each state. 
+Namely, the state abbreviation and state region 
+(i.e. north, south, etc). 
 
+For this we use the 
+[state](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/state.html)
+dataset in the `datasets` R package. 
+
+Before we begin, let's look at what states are there: 
+
+```{r}
+unique(coverage$Location)
+```
+
+We see there are more than 50 states because 
+"United States" and "District of Columbia" 
+are both included. 
+
+Let's look what states are inside the `state` dataset. 
+```{r}
+library(datasets)
+data(state)
+unique(state.name)
+```
+
+Ah, ok. So let's start by dealing with
+DC as a special case. 
+
+```{r}
+state.abb <- c(state.abb, "DC")
+state.region <- as.factor(c(as.character(state.region), "South"))
+state.name <- c(state.name, "District of Columbia")
+```
+
+We will deal with the "United States" in 
+the next section. 
+
+# Data Wrangling 
+
+## 1. "Tidy Data"
+
+### Glance at "Tidy Data"
 A subset of the data analysis process can be thought
 about in the following way:
 
@@ -326,7 +374,9 @@ coverage[1:5, 1:5]
 Now, let's use the `tidyr` R package to transform
 our data into a _tidy_ format. 
 
-## The `tidyr` R package
+## 2. The `tidyr` R package
+
+### (1) What is the `tidyr` R package ?
 
 [`tidyr`](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
 is an R package that transforms data sets to a tidy format. 
@@ -353,7 +403,7 @@ A [`tidyr` cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-w
 for the functions in the `tidyr` package can be 
 found on RStudio's website: 
 
-## Convert healthcare coverage data to a tidy format
+### (2) Convert healthcare coverage data to a tidy format
 
 Let's start by looking at the `gather()` help file
 
@@ -389,7 +439,7 @@ explore how to do that in the Data Wrangling section
 below. For now let's learn more about the `tidyr` 
 package. 
 
-## Convert back to a wide format
+### (3) Convert back to a wide format
 
 In contrast to *gathering* multiple columns into key-value pairs, we can 
 *spread* a key-value pair across multiple columns.  
@@ -408,7 +458,7 @@ multiple columns
 spread(coverage, year_type, tot_coverage)
 ```
 
-## Convert healthcare spending data to a tidy format
+### (4) Convert healthcare spending data to a tidy format
 
 Let's do the same for the `spending` data. In this 
 case I will use `year` and `spending` for
@@ -420,7 +470,7 @@ spending <- gather(spending, "year", "tot_spending", -Location)
 spending
 ```
 
-# Data Wrangling
+
 
 In the real world, analyzing data rarely involves 
 data that can be easily imported and ready for 
@@ -444,7 +494,9 @@ hard to get used to. We will therefore introducing
 a package that makes the syntax much more like 
 the English language. This package is `dplyr`. 
 
-## The `dplyr` R package
+## 3. The `dplyr` R package
+
+### (1) What is the `dplyr` R package ? 
 
 [`dplyr`](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) 
 is a powerful R-package to transform and summarize 
@@ -461,7 +513,7 @@ perform another common task which is the is the
 "split-apply-combine" concept.  We will discuss 
 that in a little bit. 
 
-## How does it compare to using base functions R?
+### (2) How does `dplyr` R package compare to using base functions R?
 
 If you are familiar with R, you are probably familiar 
 with base R functions such as `split()`, `subset()`, 
@@ -483,8 +535,7 @@ The important `dplyr` verbs to remember are:
 `group_by()` | allows for group operations in the "split-apply-combine" concept
 
 
-
-## Pipe operator: %>%
+### (3) Pipe operator: %>%
 
 Before we go any futher, let's introduce the 
 pipe operator: `%>%`. In our `stocks` example,
@@ -507,7 +558,10 @@ gather multiple columns into key-value pairs.
 ![](https://github.com/datasciencelabs/2016/raw/master/lectures/wrangling/pics/stocks-tidy.png)
 
 
-### `dplyr` verbs in action
+
+### Data wrangling in the `coverage` dataset   
+
+### (4) `dplyr` verbs in action: `separate()`, `unite()`, ...
 
 First, let's separate the `year_type` column 
 in the `coverage` dataset to two columns:
@@ -562,14 +616,14 @@ The `coverage` data looks good now. We see
 that there are different `year`s and different 
 `types` of healthcare coverage. 
 
-## Exercise - table 
-What is the range of years and types of healthcare
-in the `coverage` dataset? 
+#### (*) What is the range of years and types of healthcare in the `coverage` dataset?   
 
 ```{r}
 table(coverage$type, coverage$year)
 ```
 
+
+### Data wrangling in the `spending` dataset      
 
 Next, we will look at the `spending` data. 
 We see the `year` column has information that 
@@ -587,7 +641,7 @@ The two most basic functions are `select()` and
 `filter()` which selects columns and filters 
 rows, respectively. 
 
-## Selecting columns using `select()`
+### (5) Selecting columns using `select()`
 
 In the `separate()` function, we create two
 new columns called `year` and `name`. Then, 
@@ -634,7 +688,7 @@ regular expression
 from a group of names
 
 
-## Selecting rows using `filter()`
+### (6) Selecting rows using `filter()`
 
 Let's say we want to know how many peopled 
 had health insurance coverage in Maryland? 
@@ -659,11 +713,7 @@ coverage %>%
          year > 2014)
 ```
 
-## Exercise: %>%, filter     
-
-Has the number of uninsured has
-increased or decreased in Maryland 
-between 2013 and 2016? 
+#### (*) Has the number of uninsured has increased or decreased in Maryland between 2013 and 2016?  
 
 ```{r warning=FALSE,message=FALSE}
 coverage %>% 
@@ -671,10 +721,11 @@ coverage %>%
          type == "Uninsured")
 ```
 
-What happened between 2013 and 2014? 
-[Hint](https://en.wikipedia.org/wiki/Patient_Protection_and_Affordable_Care_Act)
+What happened between 2013 and 2014?   
 
-## Arrange or re-order rows using `arrange()`
+[Probably this is due to ACA](https://en.wikipedia.org/wiki/Patient_Protection_and_Affordable_Care_Act)
+
+### (7) Arrange or re-order rows using `arrange()` 
 
 Now, let's say we want to see which states has the To arrange (or re-order) rows by a particular 
 column such as the population, list the name of 
@@ -686,11 +737,7 @@ coverage %>%
 ```
 
 
-## Exercise - filter, desc,arrange   
-
-In 2016, what were the top three states with 
-the largest `Employer` type of healthcare 
-coverage? 
+#### (*) In 2016, what were the top three states with the largest `Employer` type of healthcare coverage? 
 
 **Hint**: use the `desc()` function inside of
 `arrange()` to order rows in a descending order. 
@@ -702,3 +749,365 @@ coverage %>%
   head(n=3)
 ```
 
+
+### (8) Join two datasets together using `left_join()`, `right_join()`, `inner_join()`, ... 
+#### (8) a. Quick review/summary of loading data and data wrangling   
+Now, based on what we've learned, we can read data and wrangle the data in just several lines! 
+Let's see how clean the codes can be!
+```{r, message=FALSE, warning=FALSE} 
+# Read the data using the `rear` package
+
+coverage <- read_csv("./data/KFF/healthcare-coverage.csv", 
+                     skip = 2, col_names = TRUE)
+coverage <- read_csv("./data/KFF/healthcare-coverage.csv", 
+                     skip = 2, col_names = TRUE,
+                     n_max  = which(coverage$Location == "Notes")-1)
+
+spending <- read_csv("./data/KFF/healthcare-spending.csv", 
+                     skip = 2, col_names = TRUE)
+spending <- read_csv("./data/KFF/healthcare-spending.csv", 
+                     skip = 2, col_names = TRUE,
+                     n_max  = which(spending$Location == "Notes")-1)
+
+# Convert the `coverage` and `spending` datasets from _wide_ to _long_ formats using the `tidyr` R package
+
+coverage <- gather(coverage, "year_type", "tot_coverage", -Location)
+spending <- gather(spending, "year", "tot_spending", -Location) 
+
+# Wrangle the datasets using some `dplyr` action verbs
+coverage <- 
+  coverage %>% 
+  separate(year_type, sep="__", into=c("year", "type"), convert = TRUE) %>%
+  mutate_at("tot_coverage", as.integer)
+
+spending <- 
+  spending %>% 
+  separate(year, sep="__", into=c("year", "name"), convert = TRUE) %>% 
+  select(-name)
+
+# Add the abbreviation of States
+coverage$abb <- state.abb[match(coverage$Location, state.name)]
+coverage$region <- state.region[match(coverage$Location, state.name)]
+
+coverage
+```
+
+
+#### (8) b. Join two datasets together
+Up until now, we have been working with three
+datasets `coverage` and `spending` separtely. 
+Next, we will combine these together.  
+
+If we want to combine, say, `coverage` and `spending` 
+together, we have to decide a few things. Both 
+share a `Location` column and a `year` column. 
+However, the range of `years` is different between
+datasets. 
+
+```{r}
+table(coverage$year)
+table(spending$year)
+```
+
+Do we want a dataset with all the years available
+or only a portion of it? Because there is spending
+information from 1991-2014, 
+and coverage information from 2013-2016.
+
+`dplyr` has a list of `join` functions that are 
+useful to combine datasets. To read more about them, 
+Jenny Bryan has created a nice 
+[cheatsheet](http://stat545.com/bit001_dplyr-cheatsheet.html). 
+
+If we look at the help file
+```{r}
+?dplyr::join
+```
+
+We see there are several options for us to pick from. 
+Let's try one out. We'll start with `left_join()`
+and see what that does. 
+
+```{r}
+hc <- left_join(coverage, spending, by = c("Location", "year"))
+head(hc)
+tail(hc)
+```
+
+What did it do? We see that the new `hc` dataset
+includes all the years from 2013-2016 (as that 
+is the range of years in `coverage`), but because
+the `spending` dataset only goes to 2014, the 
+`tot_spending` is reported as NA for years 2015 and
+2016. 
+
+What about a `right_join()`? 
+```{r}
+hc <- right_join(coverage, spending, by = c("Location", "year"))
+head(hc)
+tail(hc)
+```
+
+Here, we see every row in the spending dataset is 
+there, but with NAs for the years that there was no 
+coverage data. 
+
+There is also a `full_join()` and 
+`inner_join()`. If we want the intersection of 
+`years` from `coverage` and `spending` (meaning only 
+2013 and 2014), we should use `inner_join()`. 
+
+```{r}
+hc <- inner_join(coverage, spending, by = c("Location", "year"))
+head(hc)
+tail(hc)
+```
+
+Yes, that's what we want! 
+
+Next, if we are only interested in looking at US 
+states, we can remove the rows corresponding to 
+the `Location == "United States"`
+
+```{r}
+hc <- hc %>% 
+  filter(Location != "United States")
+```
+
+Another problem is that inside our `hc` 
+dataset, we have seen there are 
+multiple `types` of healthcare coverage
+
+```{r}
+table(hc$type)
+```
+
+The `total` type is not really a formal type of
+healthcare coverage. It really represents just 
+the total number of people in the state. This is 
+useful information and we can include it as a 
+column called `tot_pop`. How can we do this? 
+
+Well, one way would be to use the `join` functions
+again in `dplyr`. 
+
+```{r}
+pop <- hc %>% 
+  filter(type == "Total") %>% 
+  select(Location, year, tot_coverage)
+pop
+
+hc <- hc %>% 
+  filter(type != "Total") %>% 
+  left_join(pop, by = c("Location", "year")) %>% 
+  rename(tot_coverage = tot_coverage.x, tot_pop = tot_coverage.y)
+hc
+```
+
+We can check to make sure that the `total`
+is no longer listed as a `type` of healthcare
+coverage. 
+
+```{r}
+table(hc$type)
+```
+
+We are now ready to try answering our first 
+question that we asked: 
+
+> 1. Is there a relationship between healthcare coverage and healthcare spending in the United States?
+
+Let's pick out the `type==Employer` 
+and `year==2013`. 
+
+```{r}
+hc.employer.2013 <- hc %>%
+  filter(type == "Employer", year == "2013")
+plot(hc.employer.2013$tot_spending, 
+     hc.employer.2013$tot_coverage, log = "xy", 
+     xlab = "spending", ylab = "coverage")
+```
+
+We see there is a strong relationship. However, 
+we also see that healthcare coverage and spending 
+is also strongly related to population size 
+
+```{r, fig.width=10, fig.height=4}
+par(mfrow=c(1,2))
+plot(hc.employer.2013$tot_pop, 
+     hc.employer.2013$tot_coverage, log = "xy", 
+     xlab = "population size", ylab = "coverage")
+plot(hc.employer.2013$tot_pop, 
+     hc.employer.2013$tot_spending, log = "xy", 
+     xlab = "population size", ylab = "spending")
+```
+
+This means we need to take into account the 
+population size of each state when we are 
+comparing the heathcare coverage and spending. 
+
+### (9) Add columns using `mutate()`
+
+Instead of the absolute number of people who 
+are covered (`tot_coverage`), we will calculate
+the proportion of people who are coverage in 
+each state, year and type. 
+
+For this, we will use the `mutate()` function 
+in `dplyr`. 
+
+```{r}
+hc <- hc %>% 
+    mutate(prop_coverage = tot_coverage/tot_pop) 
+hc
+```
+
+We need to add another column to our dataset.
+We will add the spending per capita (or spending 
+per person) in dollars and name this column 
+`spending_capita`. 
+
+How we will do this?
+
+The `tot_spending` column is reported 
+in millions (1e6). Therefore, to calculate 
+`spending_capita` we will need to adjust for this
+scaling factor to report it on the original scale
+(just dollars) and then divide by `tot_pop`.
+
+```{r}
+hc <- hc %>% 
+    mutate(spending_capita = (tot_spending*1e6) / tot_pop) 
+hc %>% select(prop_coverage, spending_capita)
+```
+
+Now we are ready to go back to our first question
+
+> 1. Is there a relationship between healthcare coverage and healthcare spending in the United States? 
+
+```{r}
+hc.employer.2013 <- hc %>%
+  filter(type == "Employer", year == "2013")
+plot(hc.employer.2013$spending_capita, 
+     hc.employer.2013$prop_coverage, log = "xy", 
+     xlab = "spending per capita", 
+     ylab = "proportion of Employer coverage")
+```
+
+Yes, it looks like there is a relationship for 
+`Employer` healthcare coverage in 2013. 
+
+We will continue to explore the other
+types of coverages later on. For now, we 
+get back to to learning more action verbs 
+in `dplyr`. 
+
+Our second question that we were interested 
+in was: 
+
+> 2. Which US states spend the most and which spend the least on healthcare? How does the spending distribution change across geographic regions in the United States?
+
+To answer these questions, we need to learn how 
+to calculate summary statistics in our data. 
+
+### (10)  Create summaries of columns using `summarise()`
+
+The `summarise()` function in `dplyr` 
+will create summary statistics for a given 
+column in the data frame 
+such as finding the max, min, average. 
+For example, to compute the average spending 
+per capita, we can apply the `mean()` function 
+to the column `spending_captia` and call the 
+summary value `avg_spending_capita`. 
+
+```{r}
+hc %>% 
+  summarise(avg_spending_capita = mean(spending_capita))
+```
+
+There are many other summary statistics you 
+could consider such `sd()`, `min()`, `median()`, 
+`mean()`, `sum()`, `n()` (returns the length of vector), 
+`first()` (returns first value in vector), 
+`last()` (returns last value in vector) and 
+`n_distinct()` (number of distinct values in vector). 
+
+Also note, this is the average across all states,
+and all years. This is not very informative. 
+
+If you recall, our question asked about 
+_which states_ spent the most, so we want 
+an average spending per capita for each state. 
+
+For this, we need to introduc another function in 
+`dplyr` called `group_by()`. 
+
+### (11) Group operations using `group_by()`
+
+The `group_by()` verb is and incredibly powerful
+function in `dplyr`. As we mentioned before
+it's related to concept of "split-apply-combine". 
+
+In our example above, we want to split the data 
+frame by some variable (e.g. `Location`), 
+apply a function to the individual 
+data frames (`mean`) and then combine the output
+back into a summary data frame. 
+
+Let's see how that would look
+
+```{r}
+hc %>% 
+  group_by(Location) %>%
+  summarise(avg_spending_capita = mean(spending_capita))
+```
+
+That's better. Here we are averaging across the
+years 2013 and 2014. 
+
+#### (*) What are the top 3 states that have the largestaverage spending per capita? What about the top 3 states with the smallest average spending per capita? 
+
+```{r}
+# smallest 
+hc %>% 
+  group_by(Location) %>%
+  summarise(avg_spending_capita = mean(spending_capita)) %>% 
+  arrange(avg_spending_capita) %>% 
+  head(n=3)
+
+# largest 
+hc %>% 
+  group_by(Location) %>%
+  summarise(avg_spending_capita = mean(spending_capita)) %>% 
+  arrange(desc(avg_spending_capita)) %>% 
+  head(n=3)
+```
+
+#### (*) How does the spending distribution change across geographic regions in the United States? 
+
+**Hint**: Calculate the mean and standard deviation of
+spending per capita for each geographic region in the US. 
+
+```{r}
+hc %>% 
+  group_by(region) %>%
+  summarise(avg_spending_capita = mean(spending_capita), 
+            sd_spending_capita = sd(spending_capita))
+```
+
+Another way to visualize distributions is to use boxplots. 
+
+Create four boxplots represening the spending per capita 
+distribution for each of the four regions using 
+the `boxplot()` function in R.
+
+```{r}
+boxplot(hc$spending_capita ~ hc$region)
+```
+
+Now that we have our data in a `tidy` format, next, 
+we will learn about how to do this using the 
+`ggplot2` R package in the `tidyverse`. 
+
+# Data Visualization 

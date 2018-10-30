@@ -29,16 +29,16 @@ For learning purpose, data have been downloaded, and relative route is used for 
 (Note: If students are not familiar with relative route, it will be helpful to briefly introduce 
 the idea for absolute route and relative route.)
 
-### Data Import and wrangling 
+### Data Import  
+We use the R package `library(readr)` for data import in this tutorial. We also introduce `library(datasets)` for States level information. 
 
-We introduce useful packages, including  `library(tidyverse)` and `library(readr)` 
-for data import in this course. Several specific functions in these packages will 
-be introduced. 
+### Data wrangling 
+We use the R package `library(tidyverse)`, `library(tidyr)`, `library(dplyr)` for data wrangling in this tutorial.  
 
 ### Data exploratory (exploratory analysis)   
-In this tutorial, we focus on exploratory analysis using data visulization. `ggplot2` is the R package 
+For exploratory analysis, we use data visulization for exploratory analysis. `ggplot2` is the R package 
 we demonstrate in this tutorial. 
 
 ### Other notes and resources
 
-Rstudio, ggplot2, .... 
+The session starting with (*) can be made ask exercise for students' practice.   
