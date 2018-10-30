@@ -36,7 +36,8 @@ for data import in this course. Several specific functions in these packages wil
 be introduced. 
 
 ### Data exploratory (exploratory analysis)   
-
+In this tutorial, we focus on exploratory analysis using data visulization. `ggplot2` is the R package 
+we demonstrate in this tutorial. 
 
 ### Other notes and resources
 
