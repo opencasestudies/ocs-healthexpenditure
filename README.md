@@ -40,7 +40,7 @@ Two R package `library(tidyr)`, `library(dplyr)` are used for data wrangling in 
 
 We explain what tidy data is, and further introduce the concepts of "wide format" 
 and "long format." We also demonstrate how to convert from one format to the other using 
-`gather()` and `spread()`
+`gather()` and `spread()`.
 
 We also demonstrate some other useful functions for data wrangling, including 
 selecting columns using `select()`, 
