@@ -76,9 +76,12 @@ employer coverage proportion and is
 negatively associated with the porportion 
 of uninsured population across the States. 
 
-### Notes for instructors 
-1. This material is designed for 4.5 teaching hours. (One potential way 
+### Notes for instructors  
+1. The objective of this tutorial is for student to get familiar with 
+important skills in data science, including data import (`readr`), 
+data wrangling (`dplyr`) , and data visualization (`ggplot2`) .    
+2. This material is designed for 4.5 teaching hours. (One potential way 
 to teach this tutorial is to divide the material into three 1.5 hour sessions. The 
 first session focuses on data import, the second session focuses on data 
 wrangling, and the third portion focuses on visualization.)    
-2. The session starting with (*) can be made as exercise for students' practice.   
+3. The session starting with (*) can be made as exercise for students' practice.   
