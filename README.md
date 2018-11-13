@@ -76,6 +76,9 @@ employer coverage proportion and is
 negatively associated with the porportion 
 of uninsured population across the States. 
 
-### Other notes and resources
-
-The session starting with (*) can be made ask exercise for students' practice.   
+### Notes for instructors 
+1. This material is designed for 4.5 teaching hours. (One potential way 
+to teach this tutorial is to divide them into three 1.5 hours sessisions. The 
+first session focuses on data import, the second session focuses on data 
+wrangling, and the third portion focuses on visualization.)    
+2. The session starting with (*) can be made ask exercise for students' practice.   
