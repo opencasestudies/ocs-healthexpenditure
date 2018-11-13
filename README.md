@@ -78,7 +78,7 @@ of uninsured population across the States.
 
 ### Notes for instructors 
 1. This material is designed for 4.5 teaching hours. (One potential way 
-to teach this tutorial is to divide them into three 1.5 hours sessisions. The 
+to teach this tutorial is to divide the material into three 1.5 hour sessions. The 
 first session focuses on data import, the second session focuses on data 
 wrangling, and the third portion focuses on visualization.)    
 2. The session starting with (*) can be made ask exercise for students' practice.   
