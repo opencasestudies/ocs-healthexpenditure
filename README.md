@@ -81,4 +81,4 @@ of uninsured population across the States.
 to teach this tutorial is to divide the material into three 1.5 hour sessions. The 
 first session focuses on data import, the second session focuses on data 
 wrangling, and the third portion focuses on visualization.)    
-2. The session starting with (*) can be made ask exercise for students' practice.   
+2. The session starting with (*) can be made as exercise for students' practice.   
