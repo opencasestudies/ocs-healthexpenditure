@@ -1133,9 +1133,12 @@ within the _tidyverse_.
 
 #### `ggplot2` cheatsheet
 
-<img src="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" align="middle" width="800">
+The [cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) 
+looks like the following:
+```{r, echo=FALSE}
+knitr::include_graphics("./doc/ggplot2cheatsheet.PNG")
 
-<img src="./doc/ggplot2-cheatsheet.pdf" align="middle"  width="4200" height="4200"> 
+```
 
 
 ### 1. What is the `ggplot()` function? 
