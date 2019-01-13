@@ -2,6 +2,7 @@
 
 This case study is part of the [OpenCaseStudies]() project. This work is licensed under the Creative Commons Attribution-NonCommercial 3.0 ([CC BY-NC 3.0](https://creativecommons.org/licenses/by-nc/3.0/us/)) United States License.
 
+The libraries used in this study are `library(datasets)`, `library(tidyr)`, `library(dplyr)`, `ggplot2`, and `ggrepel`. In order to run this code please ensure you have these packages installed.
 
 ### Exploring Health Expenditure using State-level data 
 

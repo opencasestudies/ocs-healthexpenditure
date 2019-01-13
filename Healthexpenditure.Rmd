@@ -10,7 +10,12 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(include = TRUE, comment = NA, echo = TRUE,
+                      message = FALSE, warning = FALSE)
+```
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('./img/SummaryPlot.png')
 ```
 
 # Motivation  
@@ -21,14 +26,19 @@ healthcare policy, and private insurance company. Before making any inference ab
 the relationship between health condition and health policy, it is important for us to 
 have a general idea about healthcare economics in the States. Thus, We are interested in 
 getting sense of the health expenditure, including healthcare coverage and 
-healthcare spending, across States.  More specifically,
+healthcare spending, across States. More specifically,
 the quesiton are   
 
 1. Is there a relationship between healthcare coverage and healthcare spending in the United States?   
-2. How does the spending distribution change across geographic regions in the Unied States?  
+2. How does the spending distribution change across geographic regions in the United States?  
 3. Does the relationship between healthcare coverage and healthcare spending in the United States change from 2013 to 2014?  
+
+In this case study, we'll walk you through collecting data, 
+importing data, cleaning data, wrangling data, and visulizing the data, using 
+well-established and commonly used packages, including 
+`library(datasets)`, `library(tidyr)`, `library(dplyr)`, `ggplot2`, and `ggrepel`.    
  
-# Data Source   
+# What is the data?    
 
 ```{r out.width = "95%", echo = FALSE, out.width='90%'}
 knitr::include_graphics("https://aspe.hhs.gov/system/files/images-reports-basic/70441/fig1.jpg")
@@ -1161,6 +1171,7 @@ There are three ways to initialize a `ggplot()` object.
 
 An empty ggplot object
 ```{r}
+library(ggplot2)
 p <- ggplot()         
 ```
 
@@ -1325,6 +1336,24 @@ hc %>%
   geom_text(aes(label=abb), nudge_x = 150)
 ```
 
+#### (*) Try to explore the package `ggrepel`, and check if you can improve the quality of visualization using the *geom_text_repel* from `ggrepel` instead of *x_nudge* from `ggplot2`.  
+
+```{r}
+## add your code here  
+
+library(ggrepel)
+
+hc %>% 
+  filter(type == "Employer", year == "2013") %>% 
+  ggplot(aes(x = spending_capita, y = prop_coverage, 
+             color = region)) + 
+  geom_point() + 
+  xlab("spending per capita") + 
+  ylab("coverage proportion") + 
+  geom_smooth(method = "lm", col = "red") + 
+  geom_text_repel(aes(label=abb))  
+```
+
 
 ### 4. Facet across a variable using `facet_wrap`
 
@@ -1357,7 +1386,7 @@ hc %>%
   xlab("spending per capita") + 
   ylab("coverage proportion") + 
   geom_smooth(method = "lm", col = "red") + 
-  geom_text(aes(label=abb), nudge_x = 150) + 
+  geom_text_repel(aes(label=abb)) + 
   facet_wrap(~type)
 ```
 
@@ -1384,7 +1413,7 @@ hc %>%
   xlab("spending per capita") + 
   ylab("coverage proportion") + 
   geom_smooth(method = "lm", col = "red") + 
-  geom_text(aes(label=abb), nudge_x = 150) + 
+  geom_text_repel(aes(label=abb)) + 
   facet_wrap(~type, scales="free_y")
 ```
 
@@ -1443,7 +1472,7 @@ p <- hc %>%
   xlab("spending per capita") + 
   ylab("coverage proportion") + 
   geom_smooth(method = "lm", col = "red") + 
-  geom_text(aes(label=abb), nudge_x = 150) 
+  geom_text_repel(aes(label=abb)) 
 
 p + facet_grid(year~type, scales="free")
 p + facet_grid(year~type)
@@ -1456,7 +1485,7 @@ The total healthcare expenditure is associated with
 the population. To make a fair comparison, 
 we create "healthcare expenditure per capita." 
 Further, the exploratory analysis via data visualization showed 
-higher speding in healthcare per capita 
+higher spending in healthcare per capita 
 is positively associated with higher 
 employer coverage proportion and is 
 negatively associated with the porportion 
