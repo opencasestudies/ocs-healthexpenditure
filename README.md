@@ -1,10 +1,18 @@
 # OpenCaseStudies
 
+### License 
+
 This case study is part of the [OpenCaseStudies]() project. This work is licensed under the Creative Commons Attribution-NonCommercial 3.0 ([CC BY-NC 3.0](https://creativecommons.org/licenses/by-nc/3.0/us/)) United States License.
 
-The libraries used in this study are `library(datasets)`, `library(tidyr)`, `library(dplyr)`, `ggplot2`, and `ggrepel`. In order to run this code please ensure you have these packages installed.
+### Citation 
 
-### Exploring Health Expenditure using State-level data 
+To cite this case study:
+
+
+
+### Title 
+
+Exploring Health Expenditure using State-level data 
 
 Health policy in the Staes is complicated, and several forms of healthcare 
 coverage existed in the United States of America, including both federal goverment-led 
@@ -14,7 +22,7 @@ have a general idea about healthcare economics in the States. Thus, We are inter
 getting sense of the health expenditure, including healthcare coverage and 
 healthcare spending, across States.  
 
-### Motivating question
+### Motivating questions
 
 1. Is there a relationship between healthcare coverage and healthcare spending in the United States?   
 2. How does the spending distribution change across geographic regions in the Unied States?  
@@ -33,10 +41,14 @@ the idea for absolute route and relative route.)
 
 We also introduce `library(datasets)` for States information.
 
-### Data Import  
+### Analysis 
+
+#### Data Import 
+
 We use the R package `library(readr)` for data import in this tutorial.  
 
-### Data wrangling 
+#### Data wrangling 
+
 Two R package `library(tidyr)`, `library(dplyr)` are used for data wrangling in this tutorial.  
 
 We explain what tidy data is, and further introduce the concepts of "wide format" 
@@ -52,8 +64,8 @@ adding columns using `mutate()`,
 creating summaries of columns using `summarise()`, 
 and grouping operations using `group_by()`. 
 
+#### Data exploration (exploratory analysis)   
 
-### Data exploration (exploratory analysis)   
 For exploratory analysis, we use data visulization for exploratory analysis. `ggplot2` is the R package 
 we demonstrate in this tutorial. 
 
@@ -64,8 +76,7 @@ how to facet across a variable using `facet_wrap()`,
 how to create boxplots using `geom_boxplot()`, 
 and how to facet by two variables using `facet_grid`. 
 
-
-### Summary   
+#### Summary   
 
 The total healthcare expenditure is associated with 
 the population. To make a fair comparison, 
@@ -77,7 +88,15 @@ employer coverage proportion and is
 negatively associated with the porportion 
 of uninsured population across the States. 
 
-### Notes for instructors  
+### Other notes and resources 
+
+The libraries used in this study are `library(datasets)`, 
+`library(tidyr)`, `library(dplyr)`, `ggplot2`, and 
+`ggrepel`. In order to run this code please ensure 
+you have these packages installed.
+
+For instructors:  
+
 1. The objective of this tutorial is for student to get familiar with 
 important skills in data science, including data import (`readr`), 
 data wrangling (`dplyr`) , and data visualization (`ggplot2`) .    
