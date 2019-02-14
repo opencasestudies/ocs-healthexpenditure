@@ -8,36 +8,49 @@ This case study is part of the [OpenCaseStudies]() project. This work is license
 
 To cite this case study:
 
+Kuo, Pei-Lun and Jager, Leah and Taub, Margaret and Hicks, Stephanie. (2019, February 14). opencasestudies/ocs-healthexpenditure: Exploring Health Expenditure using State-level data in the United States (Version v1.0.0). Zenodo. http://doi.org/10.5281/zenodo.2565307
 
+[![DOI](https://zenodo.org/badge/151142096.svg)](https://zenodo.org/badge/latestdoi/151142096)
 
 ### Title 
 
 Exploring Health Expenditure using State-level data 
 
-Health policy in the Staes is complicated, and several forms of healthcare 
-coverage existed in the United States of America, including both federal goverment-led 
-healthcare policy, and private insurance company. Before making any inference about 
-the relationship between health condition and health policy, it is important for us to 
-have a general idea about healthcare economics in the States. Thus, We are interested in 
-getting sense of the health expenditure, including healthcare coverage and 
-healthcare spending, across States.  
+Health policy in the United States is complicated, and several 
+forms of healthcare coverage exist, including both federal 
+goverment-led healthcare policy, and private insurance company.
+Before making any inference about the relationship between 
+health condition and health policy, it is important for us to 
+have a general idea about healthcare economics in the United 
+States. Thus, We are interested in getting sense of the health
+expenditure, including healthcare coverage and healthcare spending,
+across the United States.  
 
 ### Motivating questions
 
-1. Is there a relationship between healthcare coverage and healthcare spending in the United States?   
-2. How does the spending distribution change across geographic regions in the Unied States?  
-3. Does the relationship between healthcare coverage and healthcare spending in the United States change from 2013 to 2014?  
+1. Is there a relationship between healthcare coverage and
+healthcare spending in the United States?   
+2. How does the spending distribution change across geographic 
+regions in the Unied States?  
+3. Does the relationship between healthcare coverage and 
+healthcare spending in the United States change from 2013 to 2014?  
 
 ### Data
 
-The data for this demonstration come from the [Henry J Kaiser Family Foundation (KFF)](https://www.kff.org). 
+The data for this demonstration come from
+[Henry J Kaiser Family Foundation (KFF)](https://www.kff.org). 
 
-* [Health Insurance Coverage of the Total Population](https://www.kff.org/other/state-indicator/total-population/) - Includes years 2013-2016
-* [Health Care Expenditures by State of Residence (in millions)](https://www.kff.org/other/state-indicator/health-care-expenditures-by-state-of-residence-in-millions/) - Includes years 1991-2014
+- [Health Insurance Coverage of the Total Population](https://www.kff.org/other/state-indicator/total-population/)
+  - Includes years 2013-2016
+  
+- [Health Care Expenditures by State of Residence (in millions)](https://www.kff.org/other/state-indicator/health-care-expenditures-by-state-of-residence-in-millions/)
+  - Includes years 1991-2014
  
-For learning purpose, data have been downloaded, and relative route is used for this demonstration. 
-(Note: If students are not familiar with relative route, it will be helpful to briefly introduce 
-the idea for absolute route and relative route.)
+For educational purposes, the data have been downloaded 
+and relative paths are used for this demonstration.
+**Note**: If students are not familiar with relative paths,
+it will be helpful to briefly introduce the idea for absolute
+paths and relative paths.
 
 We also introduce `library(datasets)` for States information.
 
