@@ -93,7 +93,7 @@ of uninsured population across the States.
 The libraries used in this study are `library(datasets)`, 
 `library(tidyr)`, `library(dplyr)`, `ggplot2`, and 
 `ggrepel`. In order to run this code please ensure 
-you have these packages installed.
+you have these packages installed
 
 For instructors:  
 
