@@ -20,7 +20,7 @@ knitr::include_graphics('./img/SummaryPlot.png')
 
 # Motivation  
 
-Health policy in the Staes is complicated, and several forms of healthcare 
+Health policy in the States is complicated, and several forms of healthcare 
 coverage existed in the United States of America, including both federal goverment-led 
 healthcare policy, and private insurance company. Before making any inference about 
 the relationship between health condition and health policy, it is important for us to 
