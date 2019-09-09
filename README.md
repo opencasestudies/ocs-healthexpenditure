@@ -117,4 +117,6 @@ data wrangling (`dplyr`) , and data visualization (`ggplot2`) .
 to teach this tutorial is to divide the material into three 1.5 hour sessions. The 
 first session focuses on data import, the second session focuses on data 
 wrangling, and the third portion focuses on visualization.)    
-3. The session starting with (*) can be made as exercise for students' practice.   
+3. The session starting with (*) can be made as exercise for students' practice.
+
+[![Build Status](https://travis-ci.org/opencasestudies/ocs-healthexpenditure.svg?branch=master)](https://travis-ci.org/opencasestudies/ocs-healthexpenditure)   
