@@ -1,3 +1,7 @@
+Description: placeholder
+Author: placeholder
+Maintainer: placeholder
+License: placeholder
 language: r
 install:
   - R -e "install.packages('datasets')"
