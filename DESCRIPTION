@@ -1,0 +1,6 @@
+language: r
+install:
+  - R -e "install.packages('tidyverse')"
+  - R -e "devtools::install_github('rstudio/rmarkdown')"
+script:
+  - R -e "rmarkdown::render('ocs-healthexpenditure.Rmd')"
