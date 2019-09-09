@@ -11,8 +11,11 @@ Depends: R (>= 3.4.0)
 Imports: 
     tidyverse,
     datasets,
+    readr,
     tidyr,
     dplyr,
     ggplot2,
     ggrepel,
-    rmarkdown
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr
