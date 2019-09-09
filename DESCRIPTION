@@ -12,4 +12,5 @@ Package: placeholder
 Type: markdown
 Title: Does not matter.
 Version: 0.0.1
+Depends: R (>= 3.4.0)
 Imports: tidyverse
