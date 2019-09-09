@@ -4,3 +4,8 @@ install:
   - R -e "devtools::install_github('rstudio/rmarkdown')"
 script:
   - R -e "rmarkdown::render('ocs-healthexpenditure.Rmd')"
+Package: placeholder
+Type: markdown
+Title: Does not matter.
+Version: 0.0.1
+Imports: tidyverse
