@@ -1,6 +1,10 @@
 language: r
 install:
-  - R -e "install.packages('tidyverse')"
+  - R -e "install.packages('datasets')"
+  - R -e "install.packages('tidyr')"
+  - R -e "install.packages('dplyr')"
+  - R -e "install.packages('ggplot2')"
+  - R -e "install.packages('ggrepel')"
   - R -e "devtools::install_github('rstudio/rmarkdown')"
 script:
   - R -e "rmarkdown::render('ocs-healthexpenditure.Rmd')"
