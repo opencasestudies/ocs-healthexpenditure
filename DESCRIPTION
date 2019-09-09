@@ -1,20 +1,18 @@
-Description: placeholder
-Author: placeholder
-Maintainer: placeholder
-License: placeholder
-language: r
-install:
-  - R -e "install.packages('datasets')"
-  - R -e "install.packages('tidyr')"
-  - R -e "install.packages('dplyr')"
-  - R -e "install.packages('ggplot2')"
-  - R -e "install.packages('ggrepel')"
-  - R -e "devtools::install_github('rstudio/rmarkdown')"
-script:
-  - R -e "rmarkdown::render('ocs-healthexpenditure.Rmd')"
-Package: placeholder
-Type: markdown
-Title: Does not matter.
+Description: This is a Description.
+License: GPL-3
+Authors@R: person(given = "Just",
+           family = "Placeholder",
+           email = "blah@gmail.com")
+Package: ocs.healthexpenditure
+Type: package
+Title: Open Case Studies
 Version: 0.0.1
 Depends: R (>= 3.4.0)
-Imports: tidyverse
+Imports: 
+    tidyverse,
+    datasets,
+    tidyr,
+    dplyr,
+    ggplot2,
+    ggrepel,
+    rmarkdown
