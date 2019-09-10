@@ -2,11 +2,12 @@
 title: OpenCaseStudies - Health Expenditure   
 output: 
     html_document:
-        theme: cosmo 
-        toc: true
-        toc_float: true
-        highlight: tango
-        number_sections: false
+      code_download: true    
+      theme: cosmo 
+      toc: true
+      toc_float: true
+      highlight: tango
+      number_sections: false
 ---
 
 ```{r setup, include=FALSE}
