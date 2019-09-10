@@ -139,4 +139,4 @@ first session focuses on data import, the second session focuses on data
 wrangling, and the third portion focuses on visualization.)    
 3. The session starting with (*) can be made as exercise for students' practice.
 
-[![Build Status](https://travis-ci.org/opencasestudies/ocs-healthexpenditure.svg?branch=master)](https://travis-ci.org/opencasestudies/ocs-healthexpenditure)   
+ 
