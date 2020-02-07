@@ -1,0 +1,2803 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={OpenCaseStudies - Health Expenditure},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{OpenCaseStudies - Health Expenditure}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{}
+    \preauthor{}\postauthor{}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\includegraphics[width=1\linewidth]{./img/SummaryPlot}
+
+\hypertarget{motivation}{%
+\section{Motivation}\label{motivation}}
+
+Health policy in the States is complicated, and several forms of
+healthcare coverage existed in the United States of America, including
+both federal government-led healthcare policy, and private insurance
+company. Before making any inference about the relationship between
+health condition and health policy, it is important for us to have a
+general idea about healthcare economics in the States. Thus, we are
+interested in getting sense of the health expenditure, including
+healthcare coverage and healthcare spending, across States. More
+specifically, the questions are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is there a relationship between healthcare coverage and healthcare
+  spending in the United States?\\
+\item
+  How does the spending distribution change across geographic regions in
+  the United States?\\
+\item
+  Does the relationship between healthcare coverage and healthcare
+  spending in the United States change from 2013 to 2014?
+\end{enumerate}
+
+In this case study, we'll walk you through collecting data, importing
+data, cleaning data, wrangling data, and visualizing the data, using
+well-established and commonly used packages, including
+\texttt{datasets}, \texttt{tidyr}, \texttt{dplyr}, \texttt{ggplot2}, and
+\texttt{ggrepel}.
+
+\hypertarget{what-is-the-data}{%
+\section{What is the data?}\label{what-is-the-data}}
+
+\includegraphics[width=0.9\linewidth]{https://aspe.hhs.gov/system/files/images-reports-basic/70441/fig1}
+\href{https://aspe.hhs.gov/basic-report/overview-uninsured-united-states-summary-2011-current-population-survey}{Image
+source from US Department of Health and Human Services}
+
+\hypertarget{healthcare-data}{%
+\subsection{Healthcare data}\label{healthcare-data}}
+
+We will be using the data from the \href{https://www.kff.org}{Henry J
+Kaiser Family Foundation (KFF)}.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.kff.org/other/state-indicator/total-population/}{Health
+  Insurance Coverage of the Total Population} - Includes years 2013-2016
+\item
+  \href{https://www.kff.org/other/state-indicator/health-care-expenditures-by-state-of-residence-in-millions/}{Health
+  Care Expenditures by State of Residence (in millions)} - Includes
+  years 1991-2014
+\end{itemize}
+
+We have downloaded, re-named and saved these files in the
+\href{https://github.com/opencasestudies/ocs-healthexpenditure}{GitHub
+repository} under the \texttt{data/KFF/} directory.
+
+Now, before we dig into the data analysis, we need to introduce a set of
+R packages that we will use to analyze the data.
+
+\hypertarget{data-import}{%
+\section{Data Import}\label{data-import}}
+
+\hypertarget{introduction-to-tidy-data}{%
+\subsection{Introduction to ``Tidy
+data''}\label{introduction-to-tidy-data}}
+
+The \href{https://www.tidyverse.org}{tidyverse} is \emph{``an
+opinionated collection of R packages designed for data science. All
+packages share an underlying philosophy and common APIs.''}
+
+Another way of putting it is that it's a set of packages that are useful
+specifically for data manipulation, exploration and visualization with a
+common philosophy.
+
+\hypertarget{what-is-this-common-philosophy}{%
+\paragraph{What is this common
+philosophy?}\label{what-is-this-common-philosophy}}
+
+The common philosophy is called \emph{``tidy''} data. It is a standard
+way of mapping the meaning of a dataset to its structure.
+
+In \emph{tidy} data:
+
+\begin{itemize}
+\tightlist
+\item
+  Each variable forms a column.
+\item
+  Each observation forms a row.
+\item
+  Each type of observational unit forms a table.
+\end{itemize}
+
+\includegraphics[width=0.95\linewidth]{http://r4ds.had.co.nz/images/tidy-1}
+
+Below, we are interested in transforming the table on the right to the
+the table on the left, which is considered ``tidy''.
+
+\includegraphics[width=0.95\linewidth]{http://r4ds.had.co.nz/images/tidy-9}
+
+Working with tidy data is useful because it creates a structured way of
+organizing data values within a data set. This makes the data analysis
+process more efficient and simplifies the development of data analysis
+tools that work together. In this way, you can focus on the problem you
+are investigating, rather than the uninteresting logistics of data.
+
+\hypertarget{what-is-in-the-tidyverse}{%
+\subsubsection{\texorpdfstring{1. What is in the
+\texttt{tidyverse}?}{1. What is in the tidyverse?}}\label{what-is-in-the-tidyverse}}
+
+We can install and load the set of R packages using
+\texttt{install.packages("tidyverse")} function.
+
+When we load the tidyverse package using \texttt{library(tidyverse)},
+there are six core R packages that load:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://readr.tidyverse.org}{readr}, for data import.
+\item
+  \href{http://tidyr.tidyverse.org}{tidyr}, for data tidying.
+\item
+  \href{http://dplyr.tidyverse.org}{dplyr}, for data wrangling.
+\item
+  \href{http://ggplot2.tidyverse.org}{ggplot2}, for data visualisation.
+\item
+  \href{http://purrr.tidyverse.org}{purrr}, for functional programming.
+\item
+  \href{http://tibble.tidyverse.org}{tibble}, for tibbles, a modern
+  re-imagining of data frames.
+\end{itemize}
+
+Here, we load in the tidyverse.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+These packages are highlighted in bold here:
+
+\includegraphics[width=0.95\linewidth]{https://rviews.rstudio.com/post/2017-06-09-What-is-the-tidyverse_files/tidyverse1}
+
+Because these packages all share the ``tidy'' philosophy, the data
+analysis workflow is easier as you move from package to package.
+
+Here, we will focus on the \texttt{readr}, \texttt{tidyr} and
+\texttt{dplyr} R packages to import data, to transform data to the
+``tidy'' format, and to wrangle data.
+
+Next, we will give a brief description of the features in each of these
+packages.
+
+There are several base R functions that allow you read in data into R,
+which you may be familiar with such as \texttt{read.table()},
+\texttt{read.csv()}, and \texttt{read.delim()}. Instead of using these,
+we will use the functions in the
+\href{https://readr.tidyverse.org/articles/readr.html}{readr} R package.
+The main reasons for this are
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Compared to equivalent base R functions, the functions in
+  \texttt{readr} are around 10x faster.
+\item
+  You can specify the column types (e.g character, integer, double,
+  logical, date, time, etc)
+\item
+  All parsing problems are recorded in a data frame.
+\end{enumerate}
+
+\hypertarget{read-data-using-the-readr-r-package}{%
+\subsection{\texorpdfstring{Read data using the \texttt{readr} R
+package}{Read data using the readr R package}}\label{read-data-using-the-readr-r-package}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\end{Highlighting}
+\end{Shaded}
+
+The main functions in \texttt{readr} are:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.03\columnwidth}\raggedright
+\texttt{readr} functions\strut
+\end{minipage} & \begin{minipage}[b]{0.91\columnwidth}\raggedright
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{read\_delim()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+reads in a flat file data with a given character to separate
+fields\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{read\_csv()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+reads in a CSV file\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{read\_tsv()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+reads in a file with values separated by tabs\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{read\_lines()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+reads only a certain number of lines from the file\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{read\_file()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+reads a complete file into a string\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{write\_csv()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+writes data frame to CSV\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+A useful cheatsheet for the functions in the \texttt{readr} package can
+be found on RStudio's website:
+
+\includegraphics{https://www.rstudio.com/wp-content/uploads/2018/08/data-import.png}
+
+\hypertarget{read-in-data}{%
+\subsubsection{1. Read in data}\label{read-in-data}}
+
+\hypertarget{read-in-health-healthcare-coverage-data}{%
+\paragraph{Read in health healthcare coverage
+data}\label{read-in-health-healthcare-coverage-data}}
+
+Let's try reading in some data. We will begin by reading in the
+\texttt{healthcare-coverage.csv} data.
+
+If we want to see what the header of the file looks like, we can use the
+\texttt{read\_lines()} function to peak at the first few lines.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{read_lines}\NormalTok{(}\DataTypeTok{file =} \StringTok{"./data/KFF/healthcare-coverage.csv"}\NormalTok{, }\DataTypeTok{n_max =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] "\"Title: Health Insurance Coverage of the Total Population | The Henry J. Kaiser Family Foundation\""                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+ [2] "\"Timeframe: 2013 - 2016\""                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+ [3] "\"Location\",\"2013__Employer\",\"2013__Non-Group\",\"2013__Medicaid\",\"2013__Medicare\",\"2013__Other Public\",\"2013__Uninsured\",\"2013__Total\",\"2014__Employer\",\"2014__Non-Group\",\"2014__Medicaid\",\"2014__Medicare\",\"2014__Other Public\",\"2014__Uninsured\",\"2014__Total\",\"2015__Employer\",\"2015__Non-Group\",\"2015__Medicaid\",\"2015__Medicare\",\"2015__Other Public\",\"2015__Uninsured\",\"2015__Total\",\"2016__Employer\",\"2016__Non-Group\",\"2016__Medicaid\",\"2016__Medicare\",\"2016__Other Public\",\"2016__Uninsured\",\"2016__Total\""
+ [4] "\"United States\",\"155696900\",\"13816000\",\"54919100\",\"40876300\",\"6295400\",\"41795100\",\"313401200\",\"154347500\",\"19313000\",\"61650400\",\"41896500\",\"5985000\",\"32967500\",\"316159900\",\"155965800\",\"21816500\",\"62384500\",\"43308400\",\"6422300\",\"28965900\",\"318868500\",\"157381500\",\"21884400\",\"62303400\",\"44550200\",\"6192200\",\"28051900\",\"320372000\""                                                                                                                                                                           
+ [5] "\"Alabama\",\"2126500\",\"174200\",\"869700\",\"783000\",\"85600\",\"724800\",\"4763900\",\"2202800\",\"288900\",\"891900\",\"718400\",\"143900\",\"522200\",\"4768000\",\"2218000\",\"291500\",\"911400\",\"719100\",\"174600\",\"519400\",\"4833900\",\"2263800\",\"262400\",\"997000\",\"761200\",\"128800\",\"420800\",\"4834100\""                                                                                                                                                                                                                                      
+ [6] "\"Alaska\",\"364900\",\"24000\",\"95000\",\"55200\",\"60600\",\"102200\",\"702000\",\"345300\",\"26800\",\"130100\",\"55300\",\"37300\",\"100800\",\"695700\",\"355700\",\"22300\",\"128100\",\"60900\",\"47700\",\"90500\",\"705300\",\"324400\",\"20300\",\"145400\",\"68200\",\"55600\",\"96900\",\"710800\""                                                                                                                                                                                                                                                             
+ [7] "\"Arizona\",\"2883800\",\"170800\",\"1346100\",\"842000\",\"N/A\",\"1223000\",\"6603100\",\"2835200\",\"333500\",\"1639400\",\"911100\",\"N/A\",\"827100\",\"6657200\",\"2766500\",\"278400\",\"1711500\",\"949000\",\"189300\",\"844800\",\"6739500\",\"3010700\",\"377000\",\"1468400\",\"1028000\",\"172500\",\"833700\",\"6890200\""                                                                                                                                                                                                                                     
+ [8] "\"Arkansas\",\"1128800\",\"155600\",\"600800\",\"515200\",\"67600\",\"436800\",\"2904800\",\"1176500\",\"231700\",\"639200\",\"479400\",\"82000\",\"287200\",\"2896000\",\"1293700\",\"200200\",\"641400\",\"484500\",\"63700\",\"268400\",\"2953000\",\"1290900\",\"252900\",\"618600\",\"490000\",\"67500\",\"225500\",\"2945300\""                                                                                                                                                                                                                                        
+ [9] "\"California\",\"17747300\",\"1986400\",\"8344800\",\"3828500\",\"675400\",\"5594100\",\"38176400\",\"17703700\",\"2778800\",\"9618800\",\"4049000\",\"634400\",\"3916700\",\"38701300\",\"17718300\",\"3444200\",\"10138100\",\"4080100\",\"752700\",\"2980600\",\"39113900\",\"18116200\",\"3195400\",\"9853800\",\"4436000\",\"556100\",\"3030800\",\"39188300\""                                                                                                                                                                                                         
+[10] "\"Colorado\",\"2852500\",\"426300\",\"697300\",\"549700\",\"118100\",\"654000\",\"5297800\",\"2489400\",\"397900\",\"1053700\",\"619500\",\"214000\",\"602900\",\"5377400\",\"2706000\",\"346900\",\"1036600\",\"708000\",\"148000\",\"475700\",\"5421300\",\"2872600\",\"370000\",\"855800\",\"692400\",\"190100\",\"528400\",\"5509200\""                                                                                                                                                                                                                                  
+\end{verbatim}
+
+It looks like the first two lines are descriptive and are not useful. We
+will tell R to skip reading these in using the \texttt{skip} argument in
+\texttt{read\_csv()}. The third line looks like it contains the column
+names and starting on the fourth line is where the data starts.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"./data/KFF/healthcare-coverage.csv"}\NormalTok{, }
+                     \DataTypeTok{skip =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(coverage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 29
+  Location `2013__Employer` `2013__Non-Grou~ `2013__Medicaid`
+  <chr>               <dbl>            <dbl>            <dbl>
+1 United ~        155696900         13816000         54919100
+2 Alabama           2126500           174200           869700
+3 Alaska             364900            24000            95000
+4 Arizona           2883800           170800          1346100
+5 Arkansas          1128800           155600           600800
+6 Califor~         17747300          1986400          8344800
+# ... with 25 more variables: `2013__Medicare` <dbl>, `2013__Other
+#   Public` <chr>, `2013__Uninsured` <dbl>, `2013__Total` <dbl>,
+#   `2014__Employer` <dbl>, `2014__Non-Group` <dbl>,
+#   `2014__Medicaid` <dbl>, `2014__Medicare` <dbl>, `2014__Other
+#   Public` <chr>, `2014__Uninsured` <dbl>, `2014__Total` <dbl>,
+#   `2015__Employer` <dbl>, `2015__Non-Group` <dbl>,
+#   `2015__Medicaid` <dbl>, `2015__Medicare` <dbl>, `2015__Other
+#   Public` <chr>, `2015__Uninsured` <dbl>, `2015__Total` <dbl>,
+#   `2016__Employer` <dbl>, `2016__Non-Group` <dbl>,
+#   `2016__Medicaid` <dbl>, `2016__Medicare` <dbl>, `2016__Other
+#   Public` <chr>, `2016__Uninsured` <dbl>, `2016__Total` <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(coverage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 29
+  Location `2013__Employer` `2013__Non-Grou~ `2013__Medicaid`
+  <chr>               <dbl>            <dbl>            <dbl>
+1 <NA>                   NA               NA               NA
+2 *Uninsu~               NA               NA               NA
+3 <NA>                   NA               NA               NA
+4 For exa~               NA               NA               NA
+5 <NA>                   NA               NA               NA
+6 *N/A*: ~               NA               NA               NA
+# ... with 25 more variables: `2013__Medicare` <dbl>, `2013__Other
+#   Public` <chr>, `2013__Uninsured` <dbl>, `2013__Total` <dbl>,
+#   `2014__Employer` <dbl>, `2014__Non-Group` <dbl>,
+#   `2014__Medicaid` <dbl>, `2014__Medicare` <dbl>, `2014__Other
+#   Public` <chr>, `2014__Uninsured` <dbl>, `2014__Total` <dbl>,
+#   `2015__Employer` <dbl>, `2015__Non-Group` <dbl>,
+#   `2015__Medicaid` <dbl>, `2015__Medicare` <dbl>, `2015__Other
+#   Public` <chr>, `2015__Uninsured` <dbl>, `2015__Total` <dbl>,
+#   `2016__Employer` <dbl>, `2016__Non-Group` <dbl>,
+#   `2016__Medicaid` <dbl>, `2016__Medicare` <dbl>, `2016__Other
+#   Public` <chr>, `2016__Uninsured` <dbl>, `2016__Total` <dbl>
+\end{verbatim}
+
+It looks like we now have the right header, but there are a bunch of NAs
+in the end of the data frame because most of it isn't useful data.
+
+Let's take a closer look at the last 30 lines
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(coverage, }\DataTypeTok{n=}\DecValTok{30}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 30 x 29
+   Location `2013__Employer` `2013__Non-Grou~ `2013__Medicaid`
+   <chr>               <dbl>            <dbl>            <dbl>
+ 1 Washing~          3541600           309000          1026800
+ 2 West Vi~           841300            42600           382500
+ 3 Wiscons~          3154500           225300           907600
+ 4 Wyoming            305900            19500            74200
+ 5 Notes                  NA               NA               NA
+ 6 The maj~               NA               NA               NA
+ 7 <NA>                   NA               NA               NA
+ 8 "In thi~               NA               NA               NA
+ 9 <NA>                   NA               NA               NA
+10 Data ex~               NA               NA               NA
+# ... with 20 more rows, and 25 more variables: `2013__Medicare` <dbl>,
+#   `2013__Other Public` <chr>, `2013__Uninsured` <dbl>,
+#   `2013__Total` <dbl>, `2014__Employer` <dbl>, `2014__Non-Group` <dbl>,
+#   `2014__Medicaid` <dbl>, `2014__Medicare` <dbl>, `2014__Other
+#   Public` <chr>, `2014__Uninsured` <dbl>, `2014__Total` <dbl>,
+#   `2015__Employer` <dbl>, `2015__Non-Group` <dbl>,
+#   `2015__Medicaid` <dbl>, `2015__Medicare` <dbl>, `2015__Other
+#   Public` <chr>, `2015__Uninsured` <dbl>, `2015__Total` <dbl>,
+#   `2016__Employer` <dbl>, `2016__Non-Group` <dbl>,
+#   `2016__Medicaid` <dbl>, `2016__Medicare` <dbl>, `2016__Other
+#   Public` <chr>, `2016__Uninsured` <dbl>, `2016__Total` <dbl>
+\end{verbatim}
+
+It looks like there is a line with a string \texttt{Notes} in it and
+everything below that line should not be read in. We can use the
+\texttt{n\_max} argument here.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"./data/KFF/healthcare-coverage.csv"}\NormalTok{, }
+                     \DataTypeTok{skip =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{coverage <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"./data/KFF/healthcare-coverage.csv"}\NormalTok{, }
+                     \DataTypeTok{skip =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{,}
+                     \DataTypeTok{n_max  =} \KeywordTok{which}\NormalTok{(coverage}\OperatorTok{$}\NormalTok{Location }\OperatorTok{==}\StringTok{ "Notes"}\NormalTok{)}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\KeywordTok{tail}\NormalTok{(coverage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 29
+  Location `2013__Employer` `2013__Non-Grou~ `2013__Medicaid`
+  <chr>               <dbl>            <dbl>            <dbl>
+1 Vermont            317700            26200           123400
+2 Virginia          4661600           364800           773200
+3 Washing~          3541600           309000          1026800
+4 West Vi~           841300            42600           382500
+5 Wiscons~          3154500           225300           907600
+6 Wyoming            305900            19500            74200
+# ... with 25 more variables: `2013__Medicare` <dbl>, `2013__Other
+#   Public` <chr>, `2013__Uninsured` <dbl>, `2013__Total` <dbl>,
+#   `2014__Employer` <dbl>, `2014__Non-Group` <dbl>,
+#   `2014__Medicaid` <dbl>, `2014__Medicare` <dbl>, `2014__Other
+#   Public` <chr>, `2014__Uninsured` <dbl>, `2014__Total` <dbl>,
+#   `2015__Employer` <dbl>, `2015__Non-Group` <dbl>,
+#   `2015__Medicaid` <dbl>, `2015__Medicare` <dbl>, `2015__Other
+#   Public` <chr>, `2015__Uninsured` <dbl>, `2015__Total` <dbl>,
+#   `2016__Employer` <dbl>, `2016__Non-Group` <dbl>,
+#   `2016__Medicaid` <dbl>, `2016__Medicare` <dbl>, `2016__Other
+#   Public` <chr>, `2016__Uninsured` <dbl>, `2016__Total` <dbl>
+\end{verbatim}
+
+That's better!
+
+\hypertarget{read-in-healthcare-spending-data}{%
+\paragraph{Read in healthcare spending
+data}\label{read-in-healthcare-spending-data}}
+
+Now because we are also going to want to use in
+\texttt{healthcare-spending.csv}, let's read it in now.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spending <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"./data/KFF/healthcare-spending.csv"}\NormalTok{, }
+                     \DataTypeTok{skip =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{spending <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"./data/KFF/healthcare-spending.csv"}\NormalTok{, }
+                     \DataTypeTok{skip =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{,}
+                     \DataTypeTok{n_max  =} \KeywordTok{which}\NormalTok{(spending}\OperatorTok{$}\NormalTok{Location }\OperatorTok{==}\StringTok{ "Notes"}\NormalTok{)}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\KeywordTok{tail}\NormalTok{(spending)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 25
+  Location `1991__Total He~ `1992__Total He~ `1993__Total He~
+  <chr>               <dbl>            <dbl>            <dbl>
+1 Vermont              1330             1421             1522
+2 Virginia            14829            15599            16634
+3 Washing~            12674            13859            14523
+4 West Vi~             4672             5159             5550
+5 Wiscons~            12694            13669            14636
+6 Wyoming              1023             1067             1171
+# ... with 21 more variables: `1994__Total Health Spending` <dbl>,
+#   `1995__Total Health Spending` <dbl>, `1996__Total Health
+#   Spending` <dbl>, `1997__Total Health Spending` <dbl>, `1998__Total
+#   Health Spending` <dbl>, `1999__Total Health Spending` <dbl>,
+#   `2000__Total Health Spending` <dbl>, `2001__Total Health
+#   Spending` <dbl>, `2002__Total Health Spending` <dbl>, `2003__Total
+#   Health Spending` <dbl>, `2004__Total Health Spending` <dbl>,
+#   `2005__Total Health Spending` <dbl>, `2006__Total Health
+#   Spending` <dbl>, `2007__Total Health Spending` <dbl>, `2008__Total
+#   Health Spending` <dbl>, `2009__Total Health Spending` <dbl>,
+#   `2010__Total Health Spending` <dbl>, `2011__Total Health
+#   Spending` <dbl>, `2012__Total Health Spending` <dbl>, `2013__Total
+#   Health Spending` <dbl>, `2014__Total Health Spending` <dbl>
+\end{verbatim}
+
+\hypertarget{take-a-glimpse-at-your-data}{%
+\subsubsection{\texorpdfstring{2. Take a \texttt{glimpse()} at your
+data}{2. Take a glimpse() at your data}}\label{take-a-glimpse-at-your-data}}
+
+One last thing in this section. One way to look at our data would be to
+use \texttt{head()} or \texttt{tail()}, as we just saw. Another one you
+might have heard of is the \texttt{str()} function. One you might not
+have heard of is the \texttt{glimpse()} function. It's used for a
+special type of object in R called a \texttt{tibble}. Let's read the
+help file to learn more.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?tibble}\OperatorTok{::}\NormalTok{tibble}
+\end{Highlighting}
+\end{Shaded}
+
+It's kind of like \texttt{print()} where it shows you columns running
+down the page. Let's try it out. If we look at our data, say the
+\texttt{coverage} data frame, we see that it is not \emph{``tidy''}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(coverage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Observations: 52
+Variables: 29
+$ Location             <chr> "United States", "Alabama", "Alaska", "Ar...
+$ `2013__Employer`     <dbl> 155696900, 2126500, 364900, 2883800, 1128...
+$ `2013__Non-Group`    <dbl> 13816000, 174200, 24000, 170800, 155600, ...
+$ `2013__Medicaid`     <dbl> 54919100, 869700, 95000, 1346100, 600800,...
+$ `2013__Medicare`     <dbl> 40876300, 783000, 55200, 842000, 515200, ...
+$ `2013__Other Public` <chr> "6295400", "85600", "60600", "N/A", "6760...
+$ `2013__Uninsured`    <dbl> 41795100, 724800, 102200, 1223000, 436800...
+$ `2013__Total`        <dbl> 313401200, 4763900, 702000, 6603100, 2904...
+$ `2014__Employer`     <dbl> 154347500, 2202800, 345300, 2835200, 1176...
+$ `2014__Non-Group`    <dbl> 19313000, 288900, 26800, 333500, 231700, ...
+$ `2014__Medicaid`     <dbl> 61650400, 891900, 130100, 1639400, 639200...
+$ `2014__Medicare`     <dbl> 41896500, 718400, 55300, 911100, 479400, ...
+$ `2014__Other Public` <chr> "5985000", "143900", "37300", "N/A", "820...
+$ `2014__Uninsured`    <dbl> 32967500, 522200, 100800, 827100, 287200,...
+$ `2014__Total`        <dbl> 316159900, 4768000, 695700, 6657200, 2896...
+$ `2015__Employer`     <dbl> 155965800, 2218000, 355700, 2766500, 1293...
+$ `2015__Non-Group`    <dbl> 21816500, 291500, 22300, 278400, 200200, ...
+$ `2015__Medicaid`     <dbl> 62384500, 911400, 128100, 1711500, 641400...
+$ `2015__Medicare`     <dbl> 43308400, 719100, 60900, 949000, 484500, ...
+$ `2015__Other Public` <chr> "6422300", "174600", "47700", "189300", "...
+$ `2015__Uninsured`    <dbl> 28965900, 519400, 90500, 844800, 268400, ...
+$ `2015__Total`        <dbl> 318868500, 4833900, 705300, 6739500, 2953...
+$ `2016__Employer`     <dbl> 157381500, 2263800, 324400, 3010700, 1290...
+$ `2016__Non-Group`    <dbl> 21884400, 262400, 20300, 377000, 252900, ...
+$ `2016__Medicaid`     <dbl> 62303400, 997000, 145400, 1468400, 618600...
+$ `2016__Medicare`     <dbl> 44550200, 761200, 68200, 1028000, 490000,...
+$ `2016__Other Public` <chr> "6192200", "128800", "55600", "172500", "...
+$ `2016__Uninsured`    <dbl> 28051900, 420800, 96900, 833700, 225500, ...
+$ `2016__Total`        <dbl> 320372000, 4834100, 710800, 6890200, 2945...
+\end{verbatim}
+
+\hypertarget{read-the-state-information-using-the-datasets-r-package}{%
+\subsection{\texorpdfstring{Read the State information using the
+\texttt{datasets} R
+package}{Read the State information using the datasets R package}}\label{read-the-state-information-using-the-datasets-r-package}}
+
+Since our goal is to get sense of the health expenditure, including
+healthcare coverage and healthcare spending, \textbf{across States}, it
+would be nice add some information about each state. Namely, the state
+abbreviation and state region (i.e.~north, south, etc).
+
+For this we use the
+\href{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/state.html}{state}
+dataset in the \texttt{datasets} R package.
+
+Before we begin, let's look at what states are there:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(coverage}\OperatorTok{$}\NormalTok{Location)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] "United States"        "Alabama"              "Alaska"              
+ [4] "Arizona"              "Arkansas"             "California"          
+ [7] "Colorado"             "Connecticut"          "Delaware"            
+[10] "District of Columbia" "Florida"              "Georgia"             
+[13] "Hawaii"               "Idaho"                "Illinois"            
+[16] "Indiana"              "Iowa"                 "Kansas"              
+[19] "Kentucky"             "Louisiana"            "Maine"               
+[22] "Maryland"             "Massachusetts"        "Michigan"            
+[25] "Minnesota"            "Mississippi"          "Missouri"            
+[28] "Montana"              "Nebraska"             "Nevada"              
+[31] "New Hampshire"        "New Jersey"           "New Mexico"          
+[34] "New York"             "North Carolina"       "North Dakota"        
+[37] "Ohio"                 "Oklahoma"             "Oregon"              
+[40] "Pennsylvania"         "Rhode Island"         "South Carolina"      
+[43] "South Dakota"         "Tennessee"            "Texas"               
+[46] "Utah"                 "Vermont"              "Virginia"            
+[49] "Washington"           "West Virginia"        "Wisconsin"           
+[52] "Wyoming"             
+\end{verbatim}
+
+We see there are more than 50 states because ``United States'' and
+``District of Columbia'' are both included.
+
+Let's look what states are inside the \texttt{state} dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(datasets)}
+\KeywordTok{data}\NormalTok{(state)}
+\KeywordTok{unique}\NormalTok{(state.name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] "Alabama"        "Alaska"         "Arizona"        "Arkansas"      
+ [5] "California"     "Colorado"       "Connecticut"    "Delaware"      
+ [9] "Florida"        "Georgia"        "Hawaii"         "Idaho"         
+[13] "Illinois"       "Indiana"        "Iowa"           "Kansas"        
+[17] "Kentucky"       "Louisiana"      "Maine"          "Maryland"      
+[21] "Massachusetts"  "Michigan"       "Minnesota"      "Mississippi"   
+[25] "Missouri"       "Montana"        "Nebraska"       "Nevada"        
+[29] "New Hampshire"  "New Jersey"     "New Mexico"     "New York"      
+[33] "North Carolina" "North Dakota"   "Ohio"           "Oklahoma"      
+[37] "Oregon"         "Pennsylvania"   "Rhode Island"   "South Carolina"
+[41] "South Dakota"   "Tennessee"      "Texas"          "Utah"          
+[45] "Vermont"        "Virginia"       "Washington"     "West Virginia" 
+[49] "Wisconsin"      "Wyoming"       
+\end{verbatim}
+
+Ah, ok. So let's start by dealing with DC as a special case.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{state.abb <-}\StringTok{ }\KeywordTok{c}\NormalTok{(state.abb, }\StringTok{"DC"}\NormalTok{)}
+\NormalTok{state.region <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(state.region), }\StringTok{"South"}\NormalTok{))}
+\NormalTok{state.name <-}\StringTok{ }\KeywordTok{c}\NormalTok{(state.name, }\StringTok{"District of Columbia"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We will deal with the ``United States'' in the next section.
+
+\hypertarget{data-wrangling}{%
+\section{Data Wrangling}\label{data-wrangling}}
+
+\hypertarget{what-is-tidy-data}{%
+\subsection{What is ``Tidy Data''?}\label{what-is-tidy-data}}
+
+\hypertarget{glance-at-tidy-data}{%
+\paragraph{Glance at ``Tidy Data''}\label{glance-at-tidy-data}}
+
+A subset of the data analysis process can be thought about in the
+following way:
+
+\includegraphics[width=0.95\linewidth]{http://r4ds.had.co.nz/diagrams/data-science}
+
+where each of these steps needs its own tools and software to complete.
+
+After we import the data into R, if we are going to take advantage of
+the \emph{``tidyverse''}, this means we need to \emph{transform} the
+data into a form that is \emph{``tidy''}. If you recall, in \emph{tidy}
+data:
+
+\begin{itemize}
+\tightlist
+\item
+  Each variable forms a column.
+\item
+  Each observation forms a row.
+\item
+  Each type of observational unit forms a table.
+\end{itemize}
+
+For example, consider the following dataset:
+
+\includegraphics{https://github.com/datasciencelabs/2016/raw/master/lectures/wrangling/pics/stocks-by-company.png}
+
+Here:
+
+\begin{itemize}
+\tightlist
+\item
+  each row represents one company (row names are companies)
+\item
+  each column represent one time point
+\item
+  the stock prices are defined for each row/column pair
+\end{itemize}
+
+Alternatively, a data set can be structured in the following way:
+
+\begin{itemize}
+\tightlist
+\item
+  each row represents one time point (but no row names)
+\item
+  the first column defines the time variable and the last three columns
+  contain the stock prices for three companies
+\end{itemize}
+
+\includegraphics{https://github.com/datasciencelabs/2016/raw/master/lectures/wrangling/pics/stocks-by-time.png}
+
+In both cases, the data is the same, but the structure is different.
+This can be \emph{frustrating} to deal with as an analyst because the
+meaning of the values (rows and columns) in the two data sets are
+different. Providing a standardized way of organizing values within a
+data set would alleviate a major portion of this frustration.
+
+For motivation, a \emph{tidy} version of the stock data we looked at
+above looks like this: (we'll learn how the functions work in just a
+moment)
+
+\includegraphics{https://github.com/datasciencelabs/2016/raw/master/lectures/wrangling/pics/stocks-tidy.png}
+
+In this ``tidy'' data set, we have three columns representing three
+variables (time, company name and stock price). Every row represents
+contains one stock price from a particular time and for a specific
+company.
+
+If we consider our \texttt{coverage} dataframe, we see it is also not in
+a tidy format. Each row contains information about the coverage level by
+\texttt{Location} across years and types of coverage.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 5 x 5
+  Location `2013__Employer` `2013__Non-Grou~ `2013__Medicaid`
+  <chr>               <dbl>            <dbl>            <dbl>
+1 United ~        155696900         13816000         54919100
+2 Alabama           2126500           174200           869700
+3 Alaska             364900            24000            95000
+4 Arizona           2883800           170800          1346100
+5 Arkansas          1128800           155600           600800
+# ... with 1 more variable: `2013__Medicare` <dbl>
+\end{verbatim}
+
+Now, let's use the \texttt{tidyr} R package to transform our data into a
+\emph{tidy} format.
+
+\hypertarget{the-tidyr-r-package}{%
+\subsection{\texorpdfstring{The \texttt{tidyr} R
+package}{The tidyr R package}}\label{the-tidyr-r-package}}
+
+\hypertarget{what-is-the-tidyr-r-package}{%
+\subsubsection{\texorpdfstring{1. What is the \texttt{tidyr} R package
+?}{1. What is the tidyr R package ?}}\label{what-is-the-tidyr-r-package}}
+
+\href{https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html}{\texttt{tidyr}}
+is an R package that transforms data sets to a tidy format.
+
+This package is installed and loaded when you load the
+\texttt{tidyverse} using \texttt{library(tidyverse)}. However, you can
+also just load the library by itself.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyr)}
+\end{Highlighting}
+\end{Shaded}
+
+The main functions in \texttt{tidyr} are:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.03\columnwidth}\raggedright
+\texttt{tidyr} functions\strut
+\end{minipage} & \begin{minipage}[b]{0.91\columnwidth}\raggedright
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{gather()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+takes multiple columns, and gathers them into key-value pairs, making
+``wide'' data longer\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{separate()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+turns a single character column into multiple columns, making ``long''
+data wider\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{spread()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+spread rows into multiple columns, transforming ``long'' data into
+``wide'' format\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+We'll explore what it means to go between a ``wide'' and ``long'' data
+format using \texttt{gather()} , \texttt{separate()}, and
+\texttt{spread()}.
+
+A
+\href{https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf}{\texttt{tidyr}
+cheatsheet} for the functions in the \texttt{tidyr} package can be found
+on RStudio's website:
+
+\hypertarget{convert-data-from-wide-format-to-long-format-using-gather}{%
+\subsubsection{\texorpdfstring{2. Convert data from wide format to long
+format using
+\texttt{gather()}}{2. Convert data from wide format to long format using gather()}}\label{convert-data-from-wide-format-to-long-format-using-gather}}
+
+Let's start by looking at the \texttt{gather()} help file
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?gather}
+\end{Highlighting}
+\end{Shaded}
+
+This function gathers multiple columns and collapses them into new
+\emph{key-value} pairs. This transform data from \emph{wide} format into
+a \emph{long} format.
+
+\begin{itemize}
+\tightlist
+\item
+  The \texttt{key} is the name of the \emph{new} column that you are
+  creating which contains the values of the column headings that you are
+  gathering
+\item
+  The \texttt{value} is the name of the \emph{new} column that will
+  contain the values themselves
+\item
+  The third argument defines the columns to gather
+\end{itemize}
+
+For example, here we create a column titled \texttt{year\_type} and
+\texttt{coverage}. We also want to keep the \texttt{Location} column as
+it is because it also contains observational level data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage <-}\StringTok{ }\KeywordTok{gather}\NormalTok{(coverage, }\StringTok{"year_type"}\NormalTok{, }\StringTok{"tot_coverage"}\NormalTok{, }\OperatorTok{-}\NormalTok{Location)}
+\NormalTok{coverage}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,456 x 3
+   Location             year_type      tot_coverage
+   <chr>                <chr>          <chr>       
+ 1 United States        2013__Employer 155696900   
+ 2 Alabama              2013__Employer 2126500     
+ 3 Alaska               2013__Employer 364900      
+ 4 Arizona              2013__Employer 2883800     
+ 5 Arkansas             2013__Employer 1128800     
+ 6 California           2013__Employer 17747300    
+ 7 Colorado             2013__Employer 2852500     
+ 8 Connecticut          2013__Employer 2030500     
+ 9 Delaware             2013__Employer 473700      
+10 District of Columbia 2013__Employer 324300      
+# ... with 1,446 more rows
+\end{verbatim}
+
+Now we see each row contains one observation. Namely, a
+\texttt{Location}, a \texttt{year\_type} and \texttt{coverage}. It would
+be nice to separate out the information in the \texttt{year\_type}
+column into two columns. We can implement same techniques to the
+healthcare spending dataset.
+
+\hypertarget{convert-healthcare-spending-data-to-a-long-format-tidy-format}{%
+\paragraph{Convert healthcare spending data to a long format (tidy
+format)}\label{convert-healthcare-spending-data-to-a-long-format-tidy-format}}
+
+Let's do the same for the \texttt{spending} data. In this case I will
+use \texttt{year} and \texttt{spending} for the \texttt{key} and
+\texttt{value}. We also want to keep \texttt{Location} like before.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spending <-}\StringTok{ }\KeywordTok{gather}\NormalTok{(spending, }\StringTok{"year"}\NormalTok{, }\StringTok{"tot_spending"}\NormalTok{, }\OperatorTok{-}\NormalTok{Location)}
+\NormalTok{spending}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,248 x 3
+   Location             year                        tot_spending
+   <chr>                <chr>                              <dbl>
+ 1 United States        1991__Total Health Spending       675896
+ 2 Alabama              1991__Total Health Spending        10393
+ 3 Alaska               1991__Total Health Spending         1458
+ 4 Arizona              1991__Total Health Spending         9269
+ 5 Arkansas             1991__Total Health Spending         5632
+ 6 California           1991__Total Health Spending        81438
+ 7 Colorado             1991__Total Health Spending         8460
+ 8 Connecticut          1991__Total Health Spending        10950
+ 9 Delaware             1991__Total Health Spending         1938
+10 District of Columbia 1991__Total Health Spending         2800
+# ... with 1,238 more rows
+\end{verbatim}
+
+We will explore how to do that in the Data Wrangling section below. For
+now let's learn more about the \texttt{tidyr} package.
+
+\hypertarget{convert-data-from-long-format-to-wide-format-using-spread}{%
+\subsubsection{\texorpdfstring{3. Convert data from long format to wide
+format using
+\texttt{spread()}}{3. Convert data from long format to wide format using spread()}}\label{convert-data-from-long-format-to-wide-format-using-spread}}
+
+In contrast to \emph{gathering} multiple columns into key-value pairs,
+we can \emph{spread} a key-value pair across multiple columns.
+
+The function \texttt{spread()} does just that. It transforms data from a
+\emph{long} format into a \emph{wide} format.
+
+\begin{itemize}
+\tightlist
+\item
+  The \texttt{key} is the name of the column in your data set that
+  contains the values of the column headings that you are spreading
+  across multiple columns
+\item
+  The \texttt{value} is the name of the column that contains the values
+  for the multiple columns
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{spread}\NormalTok{(coverage, year_type, tot_coverage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 52 x 29
+   Location `2013__Employer` `2013__Medicaid` `2013__Medicare`
+   <chr>    <chr>            <chr>            <chr>           
+ 1 Alabama  2126500          869700           783000          
+ 2 Alaska   364900           95000            55200           
+ 3 Arizona  2883800          1346100          842000          
+ 4 Arkansas 1128800          600800           515200          
+ 5 Califor~ 17747300         8344800          3828500         
+ 6 Colorado 2852500          697300           549700          
+ 7 Connect~ 2030500          532000           475300          
+ 8 Delaware 473700           192700           141300          
+ 9 Distric~ 324300           174900           59900           
+10 Florida  8023400          3190900          3108800         
+# ... with 42 more rows, and 25 more variables: `2013__Non-Group` <chr>,
+#   `2013__Other Public` <chr>, `2013__Total` <chr>,
+#   `2013__Uninsured` <chr>, `2014__Employer` <chr>,
+#   `2014__Medicaid` <chr>, `2014__Medicare` <chr>,
+#   `2014__Non-Group` <chr>, `2014__Other Public` <chr>,
+#   `2014__Total` <chr>, `2014__Uninsured` <chr>, `2015__Employer` <chr>,
+#   `2015__Medicaid` <chr>, `2015__Medicare` <chr>,
+#   `2015__Non-Group` <chr>, `2015__Other Public` <chr>,
+#   `2015__Total` <chr>, `2015__Uninsured` <chr>, `2016__Employer` <chr>,
+#   `2016__Medicaid` <chr>, `2016__Medicare` <chr>,
+#   `2016__Non-Group` <chr>, `2016__Other Public` <chr>,
+#   `2016__Total` <chr>, `2016__Uninsured` <chr>
+\end{verbatim}
+
+In the real world, analyzing data rarely involves data that can be
+easily imported and ready for analysis. According to Wikipedia:
+
+\begin{quote}
+Data munging or data wrangling is loosely the process of manually
+converting or mapping data from one ``raw'' form into another format
+that allows for more convenient consumption of the data with the help of
+semi-automated tools.
+\end{quote}
+
+As you may see in class or here from data scientists on Twitter, one of
+the most time-consuming aspects of the data analysis process is ``data
+wrangling''. This is also is a trendy term for \emph{cleaning up a messy
+data set}.
+
+R provides incredibly powerful and flexible language for data wrangling.
+However, the syntax is somewhat hard to get used to. We will therefore
+introducing a package that makes the syntax much more like the English
+language. This package is \texttt{dplyr}.
+
+\hypertarget{the-dplyr-r-package}{%
+\subsection{\texorpdfstring{The \texttt{dplyr} R
+package}{The dplyr R package}}\label{the-dplyr-r-package}}
+
+\hypertarget{what-is-the-dplyr-r-package}{%
+\subsubsection{\texorpdfstring{1. What is the \texttt{dplyr} R package
+?}{1. What is the dplyr R package ?}}\label{what-is-the-dplyr-r-package}}
+
+\href{http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html}{\texttt{dplyr}}
+is a powerful R-package to transform and summarize tabular data with
+rows and columns.
+
+The package contains a set of functions (or ``verbs'') to perform common
+data manipulation operations such as filtering for rows, selecting
+specific columns, re-ordering rows, adding new columns and summarizing
+data.
+
+In addition, \texttt{dplyr} contains a useful function to perform
+another common task which is the is the ``split-apply-combine'' concept.
+We will discuss that in a little bit.
+
+\hypertarget{compare-dplyr-r-package-compare-with-base-functions-r}{%
+\subsubsection{\texorpdfstring{2. Compare \texttt{dplyr} R package
+compare with base functions
+R}{2. Compare dplyr R package compare with base functions R}}\label{compare-dplyr-r-package-compare-with-base-functions-r}}
+
+If you are familiar with R, you are probably familiar with base R
+functions such as \texttt{split()}, \texttt{subset()}, \texttt{apply()},
+\texttt{sapply()}, \texttt{lapply()}, \texttt{tapply()} and
+\texttt{aggregate()}. Compared to base functions in R, the functions in
+\texttt{dplyr} are easier to work with, are more consistent in the
+syntax and are targeted for data analysis around data frames instead of
+just vectors.
+
+The important \texttt{dplyr} verbs to remember are:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.03\columnwidth}\raggedright
+\texttt{dplyr} verbs\strut
+\end{minipage} & \begin{minipage}[b]{0.91\columnwidth}\raggedright
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{select()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+select columns\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{filter()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+filter rows\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{arrange()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+re-order or arrange rows\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{mutate()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+create new columns\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{summarize()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+summarize values\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.03\columnwidth}\raggedright
+\texttt{group\_by()}\strut
+\end{minipage} & \begin{minipage}[t]{0.91\columnwidth}\raggedright
+allows for group operations in the ``split-apply-combine'' concept\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{pipe-operator}{%
+\subsubsection{3. Pipe operator:
+\%\textgreater{}\%}\label{pipe-operator}}
+
+Before we go any further, let's introduce the pipe operator:
+\texttt{\%\textgreater{}\%}. In our \texttt{stocks} example, we briefly
+saw this symbol. It is called the pipe operator. \texttt{dplyr} imports
+this operator from another package (\texttt{magrittr})
+\href{http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html}{see
+help file here}. This operator allows you to pipe the output from one
+function to the input of another function. Instead of nesting functions
+(reading from the inside to the outside), the idea of of piping is to
+read the functions from left to right.
+
+Now in \texttt{stocks} example, we pipe the \texttt{stocks} data frame
+to the function that will gather multiple columns into key-value pairs.
+
+\includegraphics{https://github.com/datasciencelabs/2016/raw/master/lectures/wrangling/pics/stocks-tidy.png}
+
+\hypertarget{dplyr-verbs-in-action-separate-unite}{%
+\paragraph{\texorpdfstring{\texttt{dplyr} verbs in action:
+\texttt{separate()}, \texttt{unite()},
+\ldots{}}{dplyr verbs in action: separate(), unite(), \ldots{}}}\label{dplyr-verbs-in-action-separate-unite}}
+
+First, let's separate the \texttt{year\_type} column in the
+\texttt{coverage} dataset to two columns: \texttt{year} and health
+coverage \texttt{type}.
+
+To do this, we will use the \texttt{separate()} function in the
+\texttt{tidyr} package.
+
+\textbf{Note}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{separate()} = separate one column into multiple columns
+\item
+  \texttt{unite()} = unite multiple columns into one
+\end{itemize}
+
+\hypertarget{learn-separate-and-unite-in-the-spending-dataset}{%
+\paragraph{\texorpdfstring{Learn \texttt{separate()} and
+\texttt{unite()} in the \texttt{spending}
+dataset}{Learn separate() and unite() in the spending dataset}}\label{learn-separate-and-unite-in-the-spending-dataset}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{separate}\NormalTok{(year_type, }\DataTypeTok{sep=}\StringTok{"__"}\NormalTok{, }
+           \DataTypeTok{into=}\KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"type"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,456 x 4
+   Location             year  type     tot_coverage
+   <chr>                <chr> <chr>    <chr>       
+ 1 United States        2013  Employer 155696900   
+ 2 Alabama              2013  Employer 2126500     
+ 3 Alaska               2013  Employer 364900      
+ 4 Arizona              2013  Employer 2883800     
+ 5 Arkansas             2013  Employer 1128800     
+ 6 California           2013  Employer 17747300    
+ 7 Colorado             2013  Employer 2852500     
+ 8 Connecticut          2013  Employer 2030500     
+ 9 Delaware             2013  Employer 473700      
+10 District of Columbia 2013  Employer 324300      
+# ... with 1,446 more rows
+\end{verbatim}
+
+We see that we now have two columns, except the \texttt{year} column was
+converted to a character. If we look at the help file
+\texttt{?separate}, we see we can use the \texttt{convert=TRUE} argument
+to convert the character to an integer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage <-}\StringTok{ }
+\StringTok{  }\NormalTok{coverage }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{separate}\NormalTok{(year_type, }\DataTypeTok{sep=}\StringTok{"__"}\NormalTok{, }
+           \DataTypeTok{into=}\KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"type"}\NormalTok{), }
+           \DataTypeTok{convert =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{coverage}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,456 x 4
+   Location              year type     tot_coverage
+   <chr>                <int> <chr>    <chr>       
+ 1 United States         2013 Employer 155696900   
+ 2 Alabama               2013 Employer 2126500     
+ 3 Alaska                2013 Employer 364900      
+ 4 Arizona               2013 Employer 2883800     
+ 5 Arkansas              2013 Employer 1128800     
+ 6 California            2013 Employer 17747300    
+ 7 Colorado              2013 Employer 2852500     
+ 8 Connecticut           2013 Employer 2030500     
+ 9 Delaware              2013 Employer 473700      
+10 District of Columbia  2013 Employer 324300      
+# ... with 1,446 more rows
+\end{verbatim}
+
+Next, we see that the \texttt{tot\_coverage} column is also a character.
+Gah!
+
+Let's fix that. We can use the \texttt{mutate\_at()} function to do
+this. We are asking R to take \texttt{tot\_coverage} column and convert
+it to an integer and then replace the old column with the new converted
+column
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage <-}\StringTok{ }
+\StringTok{  }\NormalTok{coverage }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate_at}\NormalTok{(}\StringTok{"tot_coverage"}\NormalTok{, as.integer)}
+
+\CommentTok{# Add the abbreviation of States}
+\NormalTok{coverage}\OperatorTok{$}\NormalTok{abb <-}\StringTok{ }\NormalTok{state.abb[}\KeywordTok{match}\NormalTok{(coverage}\OperatorTok{$}\NormalTok{Location, state.name)]}
+\NormalTok{coverage}\OperatorTok{$}\NormalTok{region <-}\StringTok{ }\NormalTok{state.region[}\KeywordTok{match}\NormalTok{(coverage}\OperatorTok{$}\NormalTok{Location, state.name)]}
+
+\NormalTok{coverage}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,456 x 6
+   Location              year type     tot_coverage abb   region   
+   <chr>                <int> <chr>           <int> <chr> <fct>    
+ 1 United States         2013 Employer    155696900 <NA>  <NA>     
+ 2 Alabama               2013 Employer      2126500 AL    South    
+ 3 Alaska                2013 Employer       364900 AK    West     
+ 4 Arizona               2013 Employer      2883800 AZ    West     
+ 5 Arkansas              2013 Employer      1128800 AR    South    
+ 6 California            2013 Employer     17747300 CA    West     
+ 7 Colorado              2013 Employer      2852500 CO    West     
+ 8 Connecticut           2013 Employer      2030500 CT    Northeast
+ 9 Delaware              2013 Employer       473700 DE    South    
+10 District of Columbia  2013 Employer       324300 DC    South    
+# ... with 1,446 more rows
+\end{verbatim}
+
+The \texttt{coverage} data looks good now. We see that there are
+different \texttt{year}s and different \texttt{types} of healthcare
+coverage.
+
+Also, you may want to link the coverage data with our location
+information.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Add the abbreviation of States}
+\NormalTok{coverage}\OperatorTok{$}\NormalTok{abb <-}\StringTok{ }\NormalTok{state.abb[}\KeywordTok{match}\NormalTok{(coverage}\OperatorTok{$}\NormalTok{Location, state.name)]}
+\NormalTok{coverage}\OperatorTok{$}\NormalTok{region <-}\StringTok{ }\NormalTok{state.region[}\KeywordTok{match}\NormalTok{(coverage}\OperatorTok{$}\NormalTok{Location, state.name)]}
+
+\NormalTok{coverage}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,456 x 6
+   Location              year type     tot_coverage abb   region   
+   <chr>                <int> <chr>           <int> <chr> <fct>    
+ 1 United States         2013 Employer    155696900 <NA>  <NA>     
+ 2 Alabama               2013 Employer      2126500 AL    South    
+ 3 Alaska                2013 Employer       364900 AK    West     
+ 4 Arizona               2013 Employer      2883800 AZ    West     
+ 5 Arkansas              2013 Employer      1128800 AR    South    
+ 6 California            2013 Employer     17747300 CA    West     
+ 7 Colorado              2013 Employer      2852500 CO    West     
+ 8 Connecticut           2013 Employer      2030500 CT    Northeast
+ 9 Delaware              2013 Employer       473700 DE    South    
+10 District of Columbia  2013 Employer       324300 DC    South    
+# ... with 1,446 more rows
+\end{verbatim}
+
+\hypertarget{what-is-the-range-of-years-and-types-of-healthcare-in-the-coverage-dataset}{%
+\paragraph{\texorpdfstring{(*) What is the range of years and types of
+healthcare in the \texttt{coverage}
+dataset?}{(*) What is the range of years and types of healthcare in the coverage dataset?}}\label{what-is-the-range-of-years-and-types-of-healthcare-in-the-coverage-dataset}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(coverage}\OperatorTok{$}\NormalTok{type, coverage}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+              
+               2013 2014 2015 2016
+  Employer       52   52   52   52
+  Medicaid       52   52   52   52
+  Medicare       52   52   52   52
+  Non-Group      52   52   52   52
+  Other Public   52   52   52   52
+  Total          52   52   52   52
+  Uninsured      52   52   52   52
+\end{verbatim}
+
+\hypertarget{implement-separate-and-unite-in-the-spending-dataset}{%
+\paragraph{\texorpdfstring{Implement \texttt{separate()} and
+\texttt{unite()} in the \texttt{spending}
+dataset}{Implement separate() and unite() in the spending dataset}}\label{implement-separate-and-unite-in-the-spending-dataset}}
+
+Next, we will look at the \texttt{spending} data. We see the
+\texttt{year} column has information that we do not want. We only care
+about the year.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spending}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,248 x 3
+   Location             year                        tot_spending
+   <chr>                <chr>                              <dbl>
+ 1 United States        1991__Total Health Spending       675896
+ 2 Alabama              1991__Total Health Spending        10393
+ 3 Alaska               1991__Total Health Spending         1458
+ 4 Arizona              1991__Total Health Spending         9269
+ 5 Arkansas             1991__Total Health Spending         5632
+ 6 California           1991__Total Health Spending        81438
+ 7 Colorado             1991__Total Health Spending         8460
+ 8 Connecticut          1991__Total Health Spending        10950
+ 9 Delaware             1991__Total Health Spending         1938
+10 District of Columbia 1991__Total Health Spending         2800
+# ... with 1,238 more rows
+\end{verbatim}
+
+Let's use the \texttt{separate()} function with \texttt{convert=TRUE} to
+separate the \texttt{year} column into columns. Then, we introduce
+another \texttt{dplyr} action verb: \texttt{select()}.
+
+The two most basic functions are \texttt{select()} and \texttt{filter()}
+which selects columns and filters rows, respectively.
+
+\hypertarget{select-columns-using-select}{%
+\subsubsection{\texorpdfstring{4. Select columns using
+\texttt{select()}}{4. Select columns using select()}}\label{select-columns-using-select}}
+
+In the \texttt{separate()} function, we create two new columns called
+\texttt{year} and \texttt{name}. Then, we ask to return all the columns,
+except \texttt{name}. To select all the columns \emph{except} a specific
+column, use the ``-'' (subtraction) operator (also known as negative
+indexing).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spending <-}\StringTok{ }
+\StringTok{  }\NormalTok{spending }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{separate}\NormalTok{(year, }\DataTypeTok{sep=}\StringTok{"__"}\NormalTok{, }\DataTypeTok{into=}\KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"name"}\NormalTok{), }\DataTypeTok{convert =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{name)}
+\NormalTok{spending}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,248 x 3
+   Location              year tot_spending
+   <chr>                <int>        <dbl>
+ 1 United States         1991       675896
+ 2 Alabama               1991        10393
+ 3 Alaska                1991         1458
+ 4 Arizona               1991         9269
+ 5 Arkansas              1991         5632
+ 6 California            1991        81438
+ 7 Colorado              1991         8460
+ 8 Connecticut           1991        10950
+ 9 Delaware              1991         1938
+10 District of Columbia  1991         2800
+# ... with 1,238 more rows
+\end{verbatim}
+
+The function \texttt{select()} is much more powerful though. To select a
+range of columns by name, use the ``:'' (colon) operator
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(year}\OperatorTok{:}\NormalTok{type)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,456 x 2
+    year type    
+   <int> <chr>   
+ 1  2013 Employer
+ 2  2013 Employer
+ 3  2013 Employer
+ 4  2013 Employer
+ 5  2013 Employer
+ 6  2013 Employer
+ 7  2013 Employer
+ 8  2013 Employer
+ 9  2013 Employer
+10  2013 Employer
+# ... with 1,446 more rows
+\end{verbatim}
+
+To select all columns that start with the character string ``t'', use
+the function \texttt{starts\_with()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"t"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,456 x 2
+   type     tot_coverage
+   <chr>           <int>
+ 1 Employer    155696900
+ 2 Employer      2126500
+ 3 Employer       364900
+ 4 Employer      2883800
+ 5 Employer      1128800
+ 6 Employer     17747300
+ 7 Employer      2852500
+ 8 Employer      2030500
+ 9 Employer       473700
+10 Employer       324300
+# ... with 1,446 more rows
+\end{verbatim}
+
+Some additional options to select columns based on a specific criteria
+include
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{ends\_with()} = Select columns that end with a character
+  string
+\item
+  \texttt{contains()} = Select columns that contain a character string
+\item
+  \texttt{matches()} = Select columns that match a regular expression
+\item
+  \texttt{one\_of()} = Select columns names that are from a group of
+  names
+\end{enumerate}
+
+\hypertarget{select-rows-using-filter}{%
+\subsubsection{\texorpdfstring{5. Select rows using
+\texttt{filter()}}{5. Select rows using filter()}}\label{select-rows-using-filter}}
+
+Let's say we want to know how many peopled had health insurance coverage
+in Maryland?
+
+First, we can filter the rows for years in 2007.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Location }\OperatorTok{==}\StringTok{ "Maryland"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 28 x 6
+   Location  year type         tot_coverage abb   region
+   <chr>    <int> <chr>               <int> <chr> <fct> 
+ 1 Maryland  2013 Employer          3172400 MD    South 
+ 2 Maryland  2013 Non-Group          320800 MD    South 
+ 3 Maryland  2013 Medicaid           889800 MD    South 
+ 4 Maryland  2013 Medicare           751500 MD    South 
+ 5 Maryland  2013 Other Public       124400 MD    South 
+ 6 Maryland  2013 Uninsured          682000 MD    South 
+ 7 Maryland  2013 Total             5940900 MD    South 
+ 8 Maryland  2014 Employer          3558800 MD    South 
+ 9 Maryland  2014 Non-Group          361700 MD    South 
+10 Maryland  2014 Medicaid           807900 MD    South 
+# ... with 18 more rows
+\end{verbatim}
+
+\textbf{Note}: you can use the Boolean operators (e.g.
+\texttt{\textgreater{}}, \texttt{\textless{}}, \texttt{\textgreater{}=},
+\texttt{\textless{}=}, \texttt{!=}, \texttt{\%in\%}) to create logical
+tests.
+
+For example, if we wanted only years after 2014, we can add a second
+criteria within \texttt{filter()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Location }\OperatorTok{==}\StringTok{ "Maryland"}\NormalTok{, }
+\NormalTok{         year }\OperatorTok{>}\StringTok{ }\DecValTok{2014}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 14 x 6
+   Location  year type         tot_coverage abb   region
+   <chr>    <int> <chr>               <int> <chr> <fct> 
+ 1 Maryland  2015 Employer          3431400 MD    South 
+ 2 Maryland  2015 Non-Group          371400 MD    South 
+ 3 Maryland  2015 Medicaid           856800 MD    South 
+ 4 Maryland  2015 Medicare           705500 MD    South 
+ 5 Maryland  2015 Other Public       141200 MD    South 
+ 6 Maryland  2015 Uninsured          394300 MD    South 
+ 7 Maryland  2015 Total             5900500 MD    South 
+ 8 Maryland  2016 Employer          3210600 MD    South 
+ 9 Maryland  2016 Non-Group          443000 MD    South 
+10 Maryland  2016 Medicaid           926300 MD    South 
+11 Maryland  2016 Medicare           827000 MD    South 
+12 Maryland  2016 Other Public       153800 MD    South 
+13 Maryland  2016 Uninsured          372100 MD    South 
+14 Maryland  2016 Total             5932800 MD    South 
+\end{verbatim}
+
+\hypertarget{has-the-number-of-uninsured-has-increased-or-decreased-in-maryland-between-2013-and-2016}{%
+\paragraph{(*) Has the number of uninsured has increased or decreased in
+Maryland between 2013 and
+2016?}\label{has-the-number-of-uninsured-has-increased-or-decreased-in-maryland-between-2013-and-2016}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Location }\OperatorTok{==}\StringTok{ "Maryland"}\NormalTok{, }
+\NormalTok{         type }\OperatorTok{==}\StringTok{ "Uninsured"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 4 x 6
+  Location  year type      tot_coverage abb   region
+  <chr>    <int> <chr>            <int> <chr> <fct> 
+1 Maryland  2013 Uninsured       682000 MD    South 
+2 Maryland  2014 Uninsured       343000 MD    South 
+3 Maryland  2015 Uninsured       394300 MD    South 
+4 Maryland  2016 Uninsured       372100 MD    South 
+\end{verbatim}
+
+What happened between 2013 and 2014?
+
+\href{https://en.wikipedia.org/wiki/Patient_Protection_and_Affordable_Care_Act}{Probably
+this is due to ACA}
+
+\hypertarget{arrange-or-re-order-rows-using-arrange}{%
+\subsubsection{\texorpdfstring{6. Arrange or re-order rows using
+\texttt{arrange()}}{6. Arrange or re-order rows using arrange()}}\label{arrange-or-re-order-rows-using-arrange}}
+
+Now, let's say we want to see the states ordered from lowest to highest
+\texttt{tot\_coverage}.
+
+To arrange (or re-order) rows by a particular column you'll use the
+\texttt{arrange()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{arrange}\NormalTok{(tot_coverage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,456 x 6
+   Location       year type         tot_coverage abb   region       
+   <chr>         <int> <chr>               <int> <chr> <fct>        
+ 1 Vermont        2013 Other Public         9900 VT    Northeast    
+ 2 Vermont        2014 Other Public         9900 VT    Northeast    
+ 3 Rhode Island   2013 Other Public        12100 RI    Northeast    
+ 4 Wyoming        2014 Other Public        13600 WY    West         
+ 5 Delaware       2013 Other Public        13800 DE    South        
+ 6 Vermont        2016 Other Public        14600 VT    Northeast    
+ 7 New Hampshire  2013 Other Public        15100 NH    Northeast    
+ 8 Wyoming        2016 Other Public        16400 WY    West         
+ 9 Vermont        2015 Other Public        16500 VT    Northeast    
+10 North Dakota   2014 Other Public        17300 ND    North Central
+# ... with 1,446 more rows
+\end{verbatim}
+
+\hypertarget{in-2016-what-were-the-top-three-states-with-the-largest-employer-type-of-healthcare-coverage}{%
+\paragraph{\texorpdfstring{(*) In 2016, what were the top three states
+with the largest \texttt{Employer} type of healthcare
+coverage?}{(*) In 2016, what were the top three states with the largest Employer type of healthcare coverage?}}\label{in-2016-what-were-the-top-three-states-with-the-largest-employer-type-of-healthcare-coverage}}
+
+\textbf{Hint}: use the \texttt{desc()} function inside of
+\texttt{arrange()} to order rows in a descending order.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coverage }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Location }\OperatorTok{!=}\StringTok{ "United States"}\NormalTok{, year }\OperatorTok{==}\StringTok{ }\DecValTok{2016}\NormalTok{, type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(tot_coverage)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{head}\NormalTok{(}\DataTypeTok{n=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 6
+  Location    year type     tot_coverage abb   region   
+  <chr>      <int> <chr>           <int> <chr> <fct>    
+1 California  2016 Employer     18116200 CA    West     
+2 Texas       2016 Employer     13607200 TX    South    
+3 New York    2016 Employer      9767500 NY    Northeast
+\end{verbatim}
+
+\hypertarget{join-two-datasets-using-join}{%
+\subsubsection{\texorpdfstring{7. Join two datasets using
+\texttt{join()}}{7. Join two datasets using join()}}\label{join-two-datasets-using-join}}
+
+Here, we're going to demonstrate how to join two datasets using series
+of \texttt{join()} function, including \texttt{left\_join()},
+\texttt{right\_join()}, \texttt{inner\_join()}, \ldots{}
+
+Up until now, we have been working with three datasets \texttt{coverage}
+and \texttt{spending} separately. Next, we will combine these together.
+
+If we want to combine, say, \texttt{coverage} and \texttt{spending}
+together, we have to decide a few things. Both share a \texttt{Location}
+column and a \texttt{year} column. However, the range of \texttt{years}
+is different between datasets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(coverage}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+2013 2014 2015 2016 
+ 364  364  364  364 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(spending}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 
+  52   52   52   52   52   52   52   52   52   52   52   52   52   52   52 
+2006 2007 2008 2009 2010 2011 2012 2013 2014 
+  52   52   52   52   52   52   52   52   52 
+\end{verbatim}
+
+Do we want a dataset with all the years available or only a portion of
+it? Because there is spending information from 1991-2014, and coverage
+information from 2013-2016.
+
+\texttt{dplyr} has a list of \texttt{join} functions that are useful to
+combine datasets. To read more about them, Jenny Bryan has created a
+nice \href{http://stat545.com/bit001_dplyr-cheatsheet.html}{cheatsheet}.
+
+If we look at the help file
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?dplyr}\OperatorTok{::}\NormalTok{join}
+\end{Highlighting}
+\end{Shaded}
+
+We see there are several options for us to pick from. Let's try one out.
+We'll start with \texttt{left\_join()} and see what that does.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(coverage, spending, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"Location"}\NormalTok{, }\StringTok{"year"}\NormalTok{))}
+\KeywordTok{head}\NormalTok{(hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 7
+  Location       year type     tot_coverage abb   region tot_spending
+  <chr>         <int> <chr>           <int> <chr> <fct>         <dbl>
+1 United States  2013 Employer    155696900 <NA>  <NA>        2435624
+2 Alabama        2013 Employer      2126500 AL    South         33788
+3 Alaska         2013 Employer       364900 AK    West           7684
+4 Arizona        2013 Employer      2883800 AZ    West          41481
+5 Arkansas       2013 Employer      1128800 AR    South         20500
+6 California     2013 Employer     17747300 CA    West         278168
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 7
+  Location       year type  tot_coverage abb   region        tot_spending
+  <chr>         <int> <chr>        <int> <chr> <fct>                <dbl>
+1 Vermont        2016 Total       622500 VT    Northeast               NA
+2 Virginia       2016 Total      8175000 VA    South                   NA
+3 Washington     2016 Total      7297300 WA    West                    NA
+4 West Virginia  2016 Total      1814100 WV    South                   NA
+5 Wisconsin      2016 Total      5766100 WI    North Central           NA
+6 Wyoming        2016 Total       571700 WY    West                    NA
+\end{verbatim}
+
+What did it do? We see that the new \texttt{hc} dataset includes all the
+years from 2013-2016 (as that is the range of years in
+\texttt{coverage}), but because the \texttt{spending} dataset only goes
+to 2014, the \texttt{tot\_spending} is reported as NA for years 2015 and
+2016.
+
+\hypertarget{what-about-a-right_join}{%
+\paragraph{\texorpdfstring{What about a
+\texttt{right\_join()}?}{What about a right\_join()?}}\label{what-about-a-right_join}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc <-}\StringTok{ }\KeywordTok{right_join}\NormalTok{(coverage, spending, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"Location"}\NormalTok{, }\StringTok{"year"}\NormalTok{))}
+\KeywordTok{head}\NormalTok{(hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 7
+  Location       year type  tot_coverage abb   region tot_spending
+  <chr>         <int> <chr>        <int> <chr> <fct>         <dbl>
+1 United States  1991 <NA>            NA <NA>  <NA>         675896
+2 Alabama        1991 <NA>            NA <NA>  <NA>          10393
+3 Alaska         1991 <NA>            NA <NA>  <NA>           1458
+4 Arizona        1991 <NA>            NA <NA>  <NA>           9269
+5 Arkansas       1991 <NA>            NA <NA>  <NA>           5632
+6 California     1991 <NA>            NA <NA>  <NA>          81438
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 7
+  Location  year type         tot_coverage abb   region tot_spending
+  <chr>    <int> <chr>               <int> <chr> <fct>         <dbl>
+1 Wyoming   2014 Non-Group           31600 WY    West           4856
+2 Wyoming   2014 Medicaid            54900 WY    West           4856
+3 Wyoming   2014 Medicare            65600 WY    West           4856
+4 Wyoming   2014 Other Public        13600 WY    West           4856
+5 Wyoming   2014 Uninsured           58100 WY    West           4856
+6 Wyoming   2014 Total              572000 WY    West           4856
+\end{verbatim}
+
+Here, we see every row in the spending dataset is there, but with NAs
+for the years that there was no coverage data.
+
+There is also a \texttt{full\_join()} and \texttt{inner\_join()}. If we
+want the intersection of \texttt{years} from \texttt{coverage} and
+\texttt{spending} (meaning only 2013 and 2014), we should use
+\texttt{inner\_join()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc <-}\StringTok{ }\KeywordTok{inner_join}\NormalTok{(coverage, spending, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"Location"}\NormalTok{, }\StringTok{"year"}\NormalTok{))}
+\KeywordTok{head}\NormalTok{(hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 7
+  Location       year type     tot_coverage abb   region tot_spending
+  <chr>         <int> <chr>           <int> <chr> <fct>         <dbl>
+1 United States  2013 Employer    155696900 <NA>  <NA>        2435624
+2 Alabama        2013 Employer      2126500 AL    South         33788
+3 Alaska         2013 Employer       364900 AK    West           7684
+4 Arizona        2013 Employer      2883800 AZ    West          41481
+5 Arkansas       2013 Employer      1128800 AR    South         20500
+6 California     2013 Employer     17747300 CA    West         278168
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 7
+  Location       year type  tot_coverage abb   region        tot_spending
+  <chr>         <int> <chr>        <int> <chr> <fct>                <dbl>
+1 Vermont        2014 Total       617000 VT    Northeast             6389
+2 Virginia       2014 Total      8258800 VA    South                62847
+3 Washington     2014 Total      7085000 WA    West                 55819
+4 West Virginia  2014 Total      1825500 WV    South                17491
+5 Wisconsin      2014 Total      5747200 WI    North Central        50109
+6 Wyoming        2014 Total       572000 WY    West                  4856
+\end{verbatim}
+
+Yes, that's what we want!
+
+Next, if we are only interested in looking at US states, we can remove
+the rows corresponding to the \texttt{Location\ ==\ "United\ States"}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Location }\OperatorTok{!=}\StringTok{ "United States"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Another problem is that inside our \texttt{hc} dataset, we have seen
+there are multiple \texttt{types} of healthcare coverage.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(hc}\OperatorTok{$}\NormalTok{type)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Employer     Medicaid     Medicare    Non-Group Other Public 
+         102          102          102          102          102 
+       Total    Uninsured 
+         102          102 
+\end{verbatim}
+
+The \texttt{total} type is not really a formal type of healthcare
+coverage. It really represents just the total number of people in the
+state. This is useful information and we can include it as a column
+called \texttt{tot\_pop}. How can we do this?
+
+Well, one way would be to use the \texttt{join} functions again in
+\texttt{dplyr}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pop <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Total"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Location, year, tot_coverage)}
+\NormalTok{pop}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 102 x 3
+   Location              year tot_coverage
+   <chr>                <int>        <int>
+ 1 Alabama               2013      4763900
+ 2 Alaska                2013       702000
+ 3 Arizona               2013      6603100
+ 4 Arkansas              2013      2904800
+ 5 California            2013     38176400
+ 6 Colorado              2013      5297800
+ 7 Connecticut           2013      3578900
+ 8 Delaware              2013       909300
+ 9 District of Columbia  2013       652100
+10 Florida               2013     19429000
+# ... with 92 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{!=}\StringTok{ "Total"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(pop, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"Location"}\NormalTok{, }\StringTok{"year"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{tot_coverage =}\NormalTok{ tot_coverage.x, }\DataTypeTok{tot_pop =}\NormalTok{ tot_coverage.y)}
+\NormalTok{hc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 612 x 8
+   Location      year type   tot_coverage abb   region tot_spending tot_pop
+   <chr>        <int> <chr>         <int> <chr> <fct>         <dbl>   <int>
+ 1 Alabama       2013 Emplo~      2126500 AL    South         33788  4.76e6
+ 2 Alaska        2013 Emplo~       364900 AK    West           7684  7.02e5
+ 3 Arizona       2013 Emplo~      2883800 AZ    West          41481  6.60e6
+ 4 Arkansas      2013 Emplo~      1128800 AR    South         20500  2.90e6
+ 5 California    2013 Emplo~     17747300 CA    West         278168  3.82e7
+ 6 Colorado      2013 Emplo~      2852500 CO    West          34090  5.30e6
+ 7 Connecticut   2013 Emplo~      2030500 CT    North~        34223  3.58e6
+ 8 Delaware      2013 Emplo~       473700 DE    South          9038  9.09e5
+ 9 District of~  2013 Emplo~       324300 DC    South          7443  6.52e5
+10 Florida       2013 Emplo~      8023400 FL    South        150547  1.94e7
+# ... with 602 more rows
+\end{verbatim}
+
+We can check to make sure that the \texttt{total} is no longer listed as
+a \texttt{type} of healthcare coverage.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(hc}\OperatorTok{$}\NormalTok{type)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Employer     Medicaid     Medicare    Non-Group Other Public 
+         102          102          102          102          102 
+   Uninsured 
+         102 
+\end{verbatim}
+
+We are now ready to try answering our first question that we asked:
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is there a relationship between healthcare coverage and healthcare
+  spending in the United States?
+\end{enumerate}
+\end{quote}
+
+Let's pick out the \texttt{type==Employer} and \texttt{year==2013}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc.employer}\FloatTok{.2013}\NormalTok{ <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{, year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(hc.employer}\FloatTok{.2013}\OperatorTok{$}\NormalTok{tot_spending, }
+\NormalTok{     hc.employer}\FloatTok{.2013}\OperatorTok{$}\NormalTok{tot_coverage, }\DataTypeTok{log =} \StringTok{"xy"}\NormalTok{, }
+     \DataTypeTok{xlab =} \StringTok{"spending"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"coverage"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+We see there is a strong relationship. However, we also see that
+healthcare coverage and spending is also strongly related to population
+size
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(hc.employer}\FloatTok{.2013}\OperatorTok{$}\NormalTok{tot_pop, }
+\NormalTok{     hc.employer}\FloatTok{.2013}\OperatorTok{$}\NormalTok{tot_coverage, }\DataTypeTok{log =} \StringTok{"xy"}\NormalTok{, }
+     \DataTypeTok{xlab =} \StringTok{"population size"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"coverage"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(hc.employer}\FloatTok{.2013}\OperatorTok{$}\NormalTok{tot_pop, }
+\NormalTok{     hc.employer}\FloatTok{.2013}\OperatorTok{$}\NormalTok{tot_spending, }\DataTypeTok{log =} \StringTok{"xy"}\NormalTok{, }
+     \DataTypeTok{xlab =} \StringTok{"population size"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"spending"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+This means we need to take into account the population size of each
+state when we are comparing the healthcare coverage and spending.
+
+\hypertarget{add-columns-using-mutate}{%
+\subsubsection{\texorpdfstring{8. Add columns using
+\texttt{mutate()}}{8. Add columns using mutate()}}\label{add-columns-using-mutate}}
+
+Instead of the absolute number of people who are covered
+(\texttt{tot\_coverage}), we will calculate the proportion of people who
+are coverage in each state, year and type.
+
+For this, we will use the \texttt{mutate()} function in \texttt{dplyr}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{prop_coverage =}\NormalTok{ tot_coverage}\OperatorTok{/}\NormalTok{tot_pop) }
+\NormalTok{hc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 612 x 9
+   Location  year type  tot_coverage abb   region tot_spending tot_pop
+   <chr>    <int> <chr>        <int> <chr> <fct>         <dbl>   <int>
+ 1 Alabama   2013 Empl~      2126500 AL    South         33788  4.76e6
+ 2 Alaska    2013 Empl~       364900 AK    West           7684  7.02e5
+ 3 Arizona   2013 Empl~      2883800 AZ    West          41481  6.60e6
+ 4 Arkansas  2013 Empl~      1128800 AR    South         20500  2.90e6
+ 5 Califor~  2013 Empl~     17747300 CA    West         278168  3.82e7
+ 6 Colorado  2013 Empl~      2852500 CO    West          34090  5.30e6
+ 7 Connect~  2013 Empl~      2030500 CT    North~        34223  3.58e6
+ 8 Delaware  2013 Empl~       473700 DE    South          9038  9.09e5
+ 9 Distric~  2013 Empl~       324300 DC    South          7443  6.52e5
+10 Florida   2013 Empl~      8023400 FL    South        150547  1.94e7
+# ... with 602 more rows, and 1 more variable: prop_coverage <dbl>
+\end{verbatim}
+
+We need to add another column to our dataset. We will add the spending
+per capita (or spending per person) in dollars and name this column
+\texttt{spending\_capita}.
+
+\hypertarget{how-we-will-do-this}{%
+\paragraph{How we will do this?}\label{how-we-will-do-this}}
+
+The \texttt{tot\_spending} column is reported in millions (1e6).
+Therefore, to calculate \texttt{spending\_capita} we will need to adjust
+for this scaling factor to report it on the original scale (just
+dollars) and then divide by \texttt{tot\_pop}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{spending_capita =}\NormalTok{ (tot_spending}\OperatorTok{*}\FloatTok{1e6}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{tot_pop)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we are ready to go back to our first question.
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is there a relationship between healthcare coverage and healthcare
+  spending in the United States?
+\end{enumerate}
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc.employer}\FloatTok{.2013}\NormalTok{ <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{, year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(hc.employer}\FloatTok{.2013}\OperatorTok{$}\NormalTok{spending_capita, }
+\NormalTok{     hc.employer}\FloatTok{.2013}\OperatorTok{$}\NormalTok{prop_coverage, }\DataTypeTok{log =} \StringTok{"xy"}\NormalTok{, }
+     \DataTypeTok{xlab =} \StringTok{"spending per capita"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"proportion of Employer coverage"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+Yes, it looks like there is a relationship for \texttt{Employer}
+healthcare coverage in 2013.
+
+We will continue to explore the other types of coverages later on. For
+now, we get back to to learning more action verbs in \texttt{dplyr}.
+
+Our second question that we were interested in was:
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Which US states spend the most and which spend the least on
+  healthcare? How does the spending distribution change across
+  geographic regions in the United States?
+\end{enumerate}
+\end{quote}
+
+To answer these questions, we need to learn how to calculate summary
+statistics in our data.
+
+\hypertarget{create-summaries-of-columns-using-summarise}{%
+\subsubsection{\texorpdfstring{9. Create summaries of columns using
+\texttt{summarise()}}{9. Create summaries of columns using summarise()}}\label{create-summaries-of-columns-using-summarise}}
+
+The \texttt{summarise()} function in \texttt{dplyr} will create summary
+statistics for a given column in the data frame such as finding the max,
+min, average. For example, to compute the average spending per capita,
+we can apply the \texttt{mean()} function to the column
+\texttt{spending\_captia} and call the summary value
+\texttt{avg\_spending\_capita}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{avg_spending_capita =} \KeywordTok{mean}\NormalTok{(spending_capita))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1 x 1
+  avg_spending_capita
+                <dbl>
+1               8246.
+\end{verbatim}
+
+There are many other summary statistics you could consider such
+\texttt{sd()}, \texttt{min()}, \texttt{median()}, \texttt{mean()},
+\texttt{sum()}, \texttt{n()} (returns the length of vector),
+\texttt{first()} (returns first value in vector), \texttt{last()}
+(returns last value in vector) and \texttt{n\_distinct()} (number of
+distinct values in vector).
+
+Also note, this is the average across all states, and all years. This is
+not very informative.
+
+If you recall, our question asked about \emph{which states} spent the
+most, so we want an average spending per capita for each state.
+
+For this, we need to introduce another function in \texttt{dplyr} called
+\texttt{group\_by()}.
+
+\hypertarget{group-operations-using-group_by}{%
+\subsubsection{\texorpdfstring{10. Group operations using
+\texttt{group\_by()}}{10. Group operations using group\_by()}}\label{group-operations-using-group_by}}
+
+The \texttt{group\_by()} verb is and incredibly powerful function in
+\texttt{dplyr}. As we mentioned before it's related to concept of
+``split-apply-combine''.
+
+In our example above, we want to split the data frame by some variable
+(e.g. \texttt{Location}), apply a function to the individual data frames
+(\texttt{mean}) and then combine the output back into a summary data
+frame.
+
+Let's see how that would look
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Location) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{avg_spending_capita =} \KeywordTok{mean}\NormalTok{(spending_capita))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 51 x 2
+   Location             avg_spending_capita
+   <chr>                              <dbl>
+ 1 Alabama                            7244.
+ 2 Alaska                            11331.
+ 3 Arizona                            6397.
+ 4 Arkansas                           7324.
+ 5 California                         7416.
+ 6 Colorado                           6602.
+ 7 Connecticut                        9730.
+ 8 Delaware                          10127.
+ 9 District of Columbia              11698.
+10 Florida                            7945.
+# ... with 41 more rows
+\end{verbatim}
+
+That's better. Here we are averaging across the years 2013 and 2014.
+
+\hypertarget{what-are-the-top-3-states-that-have-the-largest-average-spending-per-capita-what-about-the-top-3-states-with-the-smallest-average-spending-per-capita}{%
+\paragraph{(*) What are the top 3 states that have the largest average
+spending per capita? What about the top 3 states with the smallest
+average spending per
+capita?}\label{what-are-the-top-3-states-that-have-the-largest-average-spending-per-capita-what-about-the-top-3-states-with-the-smallest-average-spending-per-capita}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# smallest }
+\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Location) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{avg_spending_capita =} \KeywordTok{mean}\NormalTok{(spending_capita)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(avg_spending_capita) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{head}\NormalTok{(}\DataTypeTok{n=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 2
+  Location avg_spending_capita
+  <chr>                  <dbl>
+1 Utah                   5842.
+2 Arizona                6397.
+3 Georgia                6513.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# largest }
+\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Location) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{avg_spending_capita =} \KeywordTok{mean}\NormalTok{(spending_capita)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(avg_spending_capita)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{head}\NormalTok{(}\DataTypeTok{n=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 2
+  Location             avg_spending_capita
+  <chr>                              <dbl>
+1 District of Columbia              11698.
+2 Alaska                            11331.
+3 Massachusetts                     10535.
+\end{verbatim}
+
+\hypertarget{how-does-the-spending-distribution-change-across-geographic-regions-in-the-united-states}{%
+\paragraph{(*) How does the spending distribution change across
+geographic regions in the United
+States?}\label{how-does-the-spending-distribution-change-across-geographic-regions-in-the-united-states}}
+
+\textbf{Hint}: Calculate the mean and standard deviation of spending per
+capita for each geographic region in the US.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(region) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{avg_spending_capita =} \KeywordTok{mean}\NormalTok{(spending_capita), }
+            \DataTypeTok{sd_spending_capita =} \KeywordTok{sd}\NormalTok{(spending_capita))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 4 x 3
+  region        avg_spending_capita sd_spending_capita
+  <fct>                       <dbl>              <dbl>
+1 North Central               8404.               541.
+2 Northeast                   9592.               546.
+3 South                       7994.              1273.
+4 West                        7498.              1329.
+\end{verbatim}
+
+Another way to visualize distributions is to use boxplots.
+
+Create four boxplots representing the spending per capita distribution
+for each of the four regions using the \texttt{boxplot()} function in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(hc}\OperatorTok{$}\NormalTok{spending_capita }\OperatorTok{~}\StringTok{ }\NormalTok{hc}\OperatorTok{$}\NormalTok{region)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-57-1.pdf}
+
+Now that we have our data in a \texttt{tidy} format, next, we will learn
+about how to do this using the \texttt{ggplot2} R package in the
+\texttt{tidyverse}.
+
+\hypertarget{data-visualization}{%
+\section{Data Visualization}\label{data-visualization}}
+
+As you have already seen, there are many functions available in base R
+that can create plots (e.g. \texttt{plot()}, \texttt{boxplot()}). Others
+include: \texttt{hist()}, \texttt{qqplot()}, etc. These functions are
+great because they come with a basic installation of R and can be quite
+powerful when you need a quick visualization of something when you are
+exploring data.
+
+We are choosing to introduce \texttt{ggplot2} because, in our opinion,
+it's one of the simplest ways for beginners to create relatively
+complicated plots that are intuitive and aesthetically pleasing.
+
+\hypertarget{the-ggplot2-r-package}{%
+\subsection{\texorpdfstring{The \texttt{ggplot2} R
+package}{The ggplot2 R package}}\label{the-ggplot2-r-package}}
+
+The reasons \href{http://ggplot2.tidyverse.org}{\texttt{ggplot2}} is
+generally intuitive for beginners is the use of
+\href{http://vita.had.co.nz/papers/layered-grammar.html}{grammar of
+graphics} or the \texttt{gg} in \texttt{ggplot2}. The idea is that you
+can construct many sentences by learning just a few nouns, adjectives,
+and verbs. There are specific ``words'' that we will need to learn and
+once we do, you will be able to create (or ``write'') hundreds of
+different plots.
+
+The critical part to making graphics using \texttt{ggplot2} is the data
+needs to be in a \emph{tidy} format. Given that we have just spend the
+last two lectures learning about how to work with \emph{tidy} data, we
+are primed to take advantage of all that \texttt{ggplot2} has to offer!
+
+We will show how it's easy to pipe \emph{tidy} data (output) as input to
+other functions that creates plots. This all works because we are
+working within the \emph{tidyverse}.
+
+\hypertarget{ggplot2-cheatsheet}{%
+\paragraph{\texorpdfstring{\texttt{ggplot2}
+cheatsheet}{ggplot2 cheatsheet}}\label{ggplot2-cheatsheet}}
+
+The
+\href{https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf}{cheatsheet}
+looks like the following:
+
+\includegraphics[width=12.62in]{./doc/ggplot2cheatsheet}
+
+\hypertarget{what-is-the-ggplot-function}{%
+\subsubsection{\texorpdfstring{1. What is the \texttt{ggplot()}
+function?}{1. What is the ggplot() function?}}\label{what-is-the-ggplot-function}}
+
+As explained by Hadley Wickham:
+
+\begin{quote}
+the grammar tells us that a statistical graphic is a mapping from data
+to aesthetic attributes (colour, shape, size) of geometric objects
+(points, lines, bars). The plot may also contain statistical
+transformations of the data and is drawn on a specific coordinates
+system.
+\end{quote}
+
+\hypertarget{ggplot2-terminology}{%
+\paragraph{\texorpdfstring{\texttt{ggplot2}
+Terminology}{ggplot2 Terminology}}\label{ggplot2-terminology}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{ggplot} - the main function where you specify the data set and
+  variables to plot (this is where we define the \texttt{x} and
+  \texttt{y} variable names)
+\item
+  \textbf{geoms} - geometric objects
+
+  \begin{itemize}
+  \tightlist
+  \item
+    e.g. \texttt{geom\_point()}, \texttt{geom\_bar()},
+    \texttt{geom\_line()}, \texttt{geom\_histogram()}
+  \end{itemize}
+\item
+  \textbf{aes} - aesthetics
+
+  \begin{itemize}
+  \tightlist
+  \item
+    shape, transparency, color, fill, linetype
+  \end{itemize}
+\item
+  \textbf{scales} - define how your data will be plotted
+
+  \begin{itemize}
+  \tightlist
+  \item
+    continuous, discrete, log, etc
+  \end{itemize}
+\end{itemize}
+
+There are three ways to initialize a \texttt{ggplot()} object.
+
+An empty ggplot object
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{()         }
+\end{Highlighting}
+\end{Shaded}
+
+A ggplot object associated with a dataset
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{filter}\NormalTok{(year}\OperatorTok{==}\DecValTok{2014}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{ggplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+or a ggplot object with a dataset and \texttt{x} and \texttt{y} defined
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{filter}\NormalTok{(year}\OperatorTok{==}\DecValTok{2014}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{create-scatter-plots-using-geom_point}{%
+\subsubsection{\texorpdfstring{2. Create scatter plots using
+\texttt{geom\_point()}}{2. Create scatter plots using geom\_point()}}\label{create-scatter-plots-using-geom_point}}
+
+The function \texttt{aes()} is an aesthetic mapping function inside the
+\texttt{ggplot()} object. We use this function to specify plot
+attributes (e.g. \texttt{x} and \texttt{y} variable names) that will not
+change as we add more layers.
+
+Anything that goes in the \texttt{ggplot()} object becomes a global
+setting. From there, we use the \texttt{geom} objects to add more layers
+to the base \texttt{ggplot()} object. These will define what we are
+interested in illustrating using the data.
+
+If you recall, our first question that we were interested in was
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is there a relationship between healthcare coverage and healthcare
+  spending in the United States?
+\end{enumerate}
+\end{quote}
+
+Before, we were using base R to create something like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc.employer}\FloatTok{.2013}\NormalTok{ <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{, year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{)}
+
+\KeywordTok{plot}\NormalTok{(hc.employer}\FloatTok{.2013}\OperatorTok{$}\NormalTok{spending_capita, }
+\NormalTok{     hc.employer}\FloatTok{.2013}\OperatorTok{$}\NormalTok{prop_coverage, }
+     \DataTypeTok{xlab =} \StringTok{"spending per capita"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"coverage proportion"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-63-1.pdf}
+
+Let's re-create this plot with \texttt{ggplot2} using the
+\texttt{geom\_point()} geometry.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{, year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage)) }
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"spending per capita"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"coverage proportion"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-64-1.pdf}
+
+We used the \texttt{xlab()} and \texttt{ylab()} functions in
+\texttt{ggplot2} to specify the x-axis and y-axis labels.
+
+\textbf{Note}, we do not have to assign (\texttt{\textless{}-}) the plot
+to anything:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{, year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"spending per capita"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"coverage proportion"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-65-1.pdf}
+
+It's also simple to fit a linear regression model and plot it on top of
+scatter plot using the \texttt{geom\_smooth()} (or
+\texttt{stat\_smooth()}) functions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{, year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"spending per capita"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"coverage proportion"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-66-1.pdf}
+
+The standard error bounds are computed and included in the plot.
+
+It would be nice to know which state is represented by which state. For
+this, we will introduce another \emph{geom} called
+\texttt{geom\_text()}.
+
+\hypertarget{add-layers-of-text-using-geom_text}{%
+\subsubsection{\texorpdfstring{3. Add layers of text using
+\texttt{geom\_text()}}{3. Add layers of text using geom\_text()}}\label{add-layers-of-text-using-geom_text}}
+
+In our dataset, we have information about the abbreviation for each
+state. We could add the abbreviations for each state next to the point
+on the plot to assess which states have a higher or lower coverage for a
+given amount of money they spend per capita.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{, year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"spending per capita"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"coverage proportion"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{abb))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-67-1.pdf}
+
+That is cool, but it would be even better if we could \emph{nudge} the
+text over a bit. Let's look at the help file for \texttt{geom\_text()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?ggplot2}\OperatorTok{::}\NormalTok{geom_text}
+\end{Highlighting}
+\end{Shaded}
+
+We see there is an argument called \texttt{nudge\_x} and
+\texttt{nudge\_y}. We can use these to \emph{nudge} the text over a bit
+so the text is not directly on top of the points.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{, year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"spending per capita"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"coverage proportion"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{abb), }\DataTypeTok{nudge_x =} \DecValTok{150}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-69-1.pdf}
+
+\hypertarget{color-each-point-or-state-by-what-region-they-are-from.}{%
+\paragraph{(*) Color each point (or state) by what region they are
+from.}\label{color-each-point-or-state-by-what-region-they-are-from.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## add your code here}
+
+\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{, year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage, }
+             \DataTypeTok{color =}\NormalTok{ region)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"spending per capita"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"coverage proportion"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{abb), }\DataTypeTok{nudge_x =} \DecValTok{150}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-70-1.pdf}
+
+\hypertarget{try-to-explore-the-package-ggrepel-and-check-if-you-can-improve-the-quality-of-visualization-using-the-geom_text_repel-from-ggrepel-instead-of-x_nudge-from-ggplot2.}{%
+\paragraph{\texorpdfstring{(\emph{) Try to explore the package
+\texttt{ggrepel}, and check if you can improve the quality of
+visualization using the }geom\_text\_repel* from \texttt{ggrepel}
+instead of \emph{x\_nudge} from
+\texttt{ggplot2}.}{() Try to explore the package ggrepel, and check if you can improve the quality of visualization using the geom\_text\_repel* from ggrepel instead of x\_nudge from ggplot2.}}\label{try-to-explore-the-package-ggrepel-and-check-if-you-can-improve-the-quality-of-visualization-using-the-geom_text_repel-from-ggrepel-instead-of-x_nudge-from-ggplot2.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## add your code here  }
+
+\KeywordTok{library}\NormalTok{(ggrepel)}
+
+\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "Employer"}\NormalTok{, year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage, }
+             \DataTypeTok{color =}\NormalTok{ region)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"spending per capita"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"coverage proportion"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{abb))  }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-71-1.pdf}
+
+\hypertarget{facet-across-a-variable-using-facet_wrap}{%
+\subsubsection{\texorpdfstring{4. Facet across a variable using
+\texttt{facet\_wrap}}{4. Facet across a variable using facet\_wrap}}\label{facet-across-a-variable-using-facet_wrap}}
+
+Ok, getting back to our original question:
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Is there a relationship between healthcare coverage and healthcare
+  spending in the United States?
+\end{enumerate}
+\end{quote}
+
+We saw there was a positive relationship, but this was only for one type
+of healthcare coverage (\texttt{Employer}) and one year. What about the
+other types?
+
+For this, we will introduce \texttt{facets}. The idea of \emph{faceting}
+is to stratify the data by some variable and make the same plot for each
+strata.
+
+For example, if we wanted to \emph{facet} by the \texttt{type} variable,
+we will add a layer to our \texttt{ggplot()} object using the
+\texttt{facet\_grid()} or \texttt{facet\_wrap()} functions. The function
+expects the row and column variables to be separated by a
+\texttt{\textasciitilde{}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{==}\StringTok{ "2013"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage, }
+             \DataTypeTok{color =}\NormalTok{ region)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"spending per capita"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"coverage proportion"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{abb)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{type)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-72-1.pdf}
+
+We see that the proportion of people covered have different scales in
+the y-axis. Let's read the help file to see if there is some way to not
+restrict the y-axis to be the same.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?ggplot2}\OperatorTok{::}\NormalTok{facet_grid}
+\end{Highlighting}
+\end{Shaded}
+
+Yes, we see there is an argument called \texttt{scales} that can be
+\texttt{free\_y}, (free columns), \texttt{free\_x} (free rows), and
+\texttt{free} (both). Let's try \texttt{free\_y} and look at a different
+year (\texttt{year=="2014"}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{==}\StringTok{ "2014"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage, }
+             \DataTypeTok{color =}\NormalTok{ region)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"spending per capita"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"coverage proportion"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{abb)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{type, }\DataTypeTok{scales=}\StringTok{"free_y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-74-1.pdf}
+
+Given we know \texttt{Other\ Public} refers to the military or Veterans
+Administration, we can see states like HI, VA, NV have a larger
+proportion of military or VA \texttt{Other\ Public} type coverage. While
+a state like AK has a similar proportion of \texttt{Other\ Public}
+coverage, it has a much larger spending per capita.
+
+We also see a negative relationship with the \texttt{Uninsured} type.
+The more states spend, the less uninsured people in the state.
+
+\hypertarget{create-boxplots-using-geom_boxplot}{%
+\subsubsection{\texorpdfstring{5. Create boxplots using
+\texttt{geom\_boxplot()}}{5. Create boxplots using geom\_boxplot()}}\label{create-boxplots-using-geom_boxplot}}
+
+Next, let's revisit the second question.
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Which US states spend the most and which spend the least on
+  healthcare? How does the spending distribution change across
+  geographic regions in the United States?
+\end{enumerate}
+\end{quote}
+
+Let's try making a boxplot with \texttt{ggplot2}. If you recall, the way
+to do this in base R was:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(hc}\OperatorTok{$}\NormalTok{spending_capita }\OperatorTok{~}\StringTok{ }\NormalTok{hc}\OperatorTok{$}\NormalTok{region)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-75-1.pdf}
+
+Now, we introduce the \texttt{geom\_boxplot()} function. Note, we needed
+to tell \texttt{ggplot2} what needs to be along the x and y axis in
+\texttt{aes()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ region, }\DataTypeTok{y =}\NormalTok{ spending_capita)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-76-1.pdf}
+
+\hypertarget{facet-by-two-variables-using-facet_grid}{%
+\subsubsection{\texorpdfstring{6. Facet by two variables using
+\texttt{facet\_grid}}{6. Facet by two variables using facet\_grid}}\label{facet-by-two-variables-using-facet_grid}}
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Does the relationship between healthcare coverage and healthcare
+  spending in the United States change from 2013 to 2014?
+\end{enumerate}
+\end{quote}
+
+Let's try faceting by both \texttt{year} and \texttt{type}. Note that we
+can facet by rows putting a column name before the
+\texttt{\textasciitilde{}} and facet by columns putting a column name
+after the \texttt{\textasciitilde{}}. We are also using
+\texttt{facet\_grid()} instead of \texttt{facet\_wrap()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\NormalTok{hc }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ spending_capita, }\DataTypeTok{y =}\NormalTok{ prop_coverage, }
+             \DataTypeTok{color =}\NormalTok{ region)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"spending per capita"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"coverage proportion"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{abb)) }
+
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{facet_grid}\NormalTok{(year}\OperatorTok{~}\NormalTok{type, }\DataTypeTok{scales=}\StringTok{"free"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-77-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{facet_grid}\NormalTok{(year}\OperatorTok{~}\NormalTok{type)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ocs-healthexpenditure_files/figure-latex/unnamed-chunk-77-2.pdf}
+
+\hypertarget{summary}{%
+\section{Summary}\label{summary}}
+
+The total healthcare expenditure is associated with the population. To
+make a fair comparison, we create ``healthcare expenditure per capita.''
+Further, the exploratory analysis via data visualization showed higher
+spending in healthcare per capita is positively associated with higher
+employer coverage proportion and is negatively associated with the
+proportion of uninsured population across the States.
+
+
+\end{document}

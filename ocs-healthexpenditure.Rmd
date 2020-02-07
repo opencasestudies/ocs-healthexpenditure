@@ -1,13 +1,17 @@
 ---
-title: OpenCaseStudies - Health Expenditure   
-output: 
-    html_document:
-      code_download: true    
-      theme: cosmo 
-      toc: true
-      toc_float: true
-      highlight: tango
-      number_sections: false
+title: "OpenCaseStudies - Health Expenditure"
+output:
+  html_document:
+    code_download: yes
+    highlight: tango
+    number_sections: no
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -17,6 +21,7 @@ knitr::opts_chunk$set(include = TRUE, comment = NA, echo = TRUE,
 
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('./img/SummaryPlot.png')
+library(pdftools)
 ```
 
 # Motivation  
