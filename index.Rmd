@@ -1,5 +1,5 @@
 ---
-title: "OpenCaseStudies - Exploring Health Expenditure using State-level data in the United States"
+title: "OpenCaseStudies: Exploring Health Expenditure using State-level data in the United States"
 output:
   html_document:
     code_download: yes
@@ -26,13 +26,12 @@ knitr::include_graphics('./img/SummaryPlot.png')
 
 # Motivation  
 
-Health policy in the States is complicated, and several forms of healthcare 
-coverage existed in the United States of America, including both federal government-led 
-healthcare policy, and private insurance company. Before making any inference about 
+Health policy in the United States is complicated, and several 
+forms of healthcare coverage exist, including both coverage by federal 
+goverment-led healthcare policy, and by private insurance companies. Before making any inference about 
 the relationship between health condition and health policy, it is important for us to 
-have a general idea about healthcare economics in the States. Thus, we are interested in 
-getting sense of the health expenditure, including healthcare coverage and 
-healthcare spending, across States. More specifically, the questions are:  
+have a general idea about healthcare economics in the United States. Thus, we are interested in 
+getting sense of healthcare coverage and healthcare spending across States. More specifically, the questions are:  
 
 1. Is there a relationship between healthcare coverage and healthcare spending in the United States?   
 2. How does the spending distribution change across geographic regions in the United States?  

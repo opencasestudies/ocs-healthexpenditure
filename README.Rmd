@@ -38,7 +38,7 @@ Exploring Health Expenditure using State-level data in the United States
 
 Health policy in the United States is complicated, and several 
 forms of healthcare coverage exist, including both coverage by federal 
-goverment-led healthcare policy, and  by private insurance companies.
+goverment-led healthcare policy, and by private insurance companies.
 Before making any inference about the relationship between 
 health condition and health policy, it is important for us to 
 have a general idea about healthcare economics in the United 
