@@ -1,5 +1,5 @@
 ---
-title: "OpenCaseStudies: Exploring Health Expenditure using State-level data in the United States"
+title: "OpenCaseStudies: Exploring health expenditure using state-level data in the United States"
 output:
   html_document:
     code_download: yes

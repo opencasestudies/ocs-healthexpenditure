@@ -30,7 +30,7 @@ v1.0.0). Zenodo.
 
 ### Title
 
-Exploring Health Expenditure using State-level data in the United States
+Exploring health expenditure using state-level data in the United States
 
 Health policy in the United States is complicated, and several forms of
 healthcare coverage exist, including both coverage by federal
@@ -39,7 +39,7 @@ Before making any inference about the relationship between health
 condition and health policy, it is important for us to have a general
 idea about healthcare economics in the United States. Thus, We are
 interested in getting sense of healthcare coverage and healthcare
-spending, across the United States.
+spending across the United States.
 
 ### Motivating questions
 
