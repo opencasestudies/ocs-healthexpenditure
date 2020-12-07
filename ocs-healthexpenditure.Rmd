@@ -1009,9 +1009,9 @@ in was:
 To answer these questions, we need to learn how 
 to calculate summary statistics in our data. 
 
-### 9.  Create summaries of columns using `summarise()`
+### 9.  Create summaries of columns using `summarize()`
 
-The `summarise()` function in `dplyr` 
+The `summarize()` function in `dplyr` 
 will create summary statistics for a given 
 column in the data frame 
 such as finding the max, min, average. 
@@ -1022,7 +1022,7 @@ summary value `avg_spending_capita`.
 
 ```{r}
 hc %>% 
-  summarise(avg_spending_capita = mean(spending_capita))
+  summarize(avg_spending_capita = mean(spending_capita))
 ```
 
 There are many other summary statistics you 
@@ -1059,7 +1059,7 @@ Let's see how that would look
 ```{r}
 hc %>% 
   group_by(Location) %>%
-  summarise(avg_spending_capita = mean(spending_capita))
+  summarize(avg_spending_capita = mean(spending_capita))
 ```
 
 That's better. Here we are averaging across the
@@ -1071,14 +1071,14 @@ years 2013 and 2014.
 # smallest 
 hc %>% 
   group_by(Location) %>%
-  summarise(avg_spending_capita = mean(spending_capita)) %>% 
+  summarize(avg_spending_capita = mean(spending_capita)) %>% 
   arrange(avg_spending_capita) %>% 
   head(n=3)
 
 # largest 
 hc %>% 
   group_by(Location) %>%
-  summarise(avg_spending_capita = mean(spending_capita)) %>% 
+  summarize(avg_spending_capita = mean(spending_capita)) %>% 
   arrange(desc(avg_spending_capita)) %>% 
   head(n=3)
 ```
@@ -1091,7 +1091,7 @@ spending per capita for each geographic region in the US.
 ```{r}
 hc %>% 
   group_by(region) %>%
-  summarise(avg_spending_capita = mean(spending_capita), 
+  summarize(avg_spending_capita = mean(spending_capita), 
             sd_spending_capita = sd(spending_capita))
 ```
 

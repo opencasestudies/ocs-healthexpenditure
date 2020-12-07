@@ -69,7 +69,19 @@ the idea for absolute paths and relative paths.
 
 We also introduce `library(datasets)` for States information.
 
-### Analysis
+### Learning Objetives
+
+The skills, methods, and concepts that students will be familiar with by
+the end of this case study are:
+
+<u>**Data Science Learning Objectives:**</u>
+
+1.  Load data from a package (`datasets`)  
+2.  Import data from a csv (`readr`)  
+3.  View, filter, join, and summarize data (`dplyr`)  
+4.  Reshape data into different formats (`tidyr`)  
+5.  Create data visualizations (`ggplot2`) with labels (`ggrepel`) and
+    facets for different groups
 
 #### Data Import
 
@@ -88,7 +100,7 @@ We also demonstrate some other useful functions for data wrangling,
 including selecting columns using `select()`, Selecting rows using
 `filter()`, arranging or re-orderomg rows using `arrange()`, joining two
 datasets using `join()`, adding columns using `mutate()`, creating
-summaries of columns using `summarise()`, and grouping operations using
+summaries of columns using `summarize()`, and grouping operations using
 `group_by()`.
 
 #### Data exploration (exploratory analysis)
@@ -114,22 +126,29 @@ porportion of uninsured population across the States.
 
 ### Other notes and resources
 
-The libraries used in this study are `library(datasets)`,
-`library(tidyr)`, `library(dplyr)`, `ggplot2`, and `ggrepel`. In order
-to run this code please ensure you have these packages installed
+<u>**Packages used in this case study:**
+</u>
 
-For instructors:
+| Package                                                                              | Use in this case study                                                   |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| [datasets](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html) | to get the state data                                                    |
+| [tibble](https://tibble.tidyverse.org/)                                              | to create tibbles (the tidyverse version of a data frame)                |
+| [readr](https://readr.tidyverse.org/)                                                | to read in the data from the csv files                                   |
+| [tidyr](https://tidyr.tidyverse.org/)                                                | to change the shape or format of tibbles to wide and long                |
+| [dplyr](https://dplyr.tidyverse.org/)                                                | to subset and filter the data for specific groups, to summarize the data |
+| [ggplot2](https://ggplot2.tidyverse.org/)                                            | to create plots                                                          |
+| [ggrepel](https://cran.r-project.org/web/packages/ggrepel/ggrepel.pdf)               | to add labels that do not overlap to plots                               |
 
-1.  The objective of this tutorial is for student to get familiar with
-    important skills in data science, including data import (`readr`),
-    data wrangling (`dplyr`) , and data visualization (`ggplot2`) .  
-2.  This material is designed for 4.5 teaching hours. (One potential way
-    to teach this tutorial is to divide the material into three 1.5 hour
-    sessions. The first session focuses on data import, the second
-    session focuses on data wrangling, and the third portion focuses on
-    visualization.)  
-3.  The session starting with (\*) can be made as exercise for students’
-    practice.
+In order to run this code please ensure you have these packages
+installed.
 
-[![Build
-Status](https://travis-ci.org/opencasestudies/ocs-healthexpenditure.svg?branch=master)](https://travis-ci.org/opencasestudies/ocs-healthexpenditure)
+### For instructors:
+
+The objective of this tutorial is for student to get familiar with
+important skills in data science, including data import (`readr`), data
+wrangling (`dplyr`), and data visualization (`ggplot2`). This material
+is designed for 4.5 teaching hours. (One potential way to teach this
+tutorial is to divide the material into three 1.5 hour sessions. The
+first session focuses on data import, the second session focuses on data
+wrangling, and the third portion focuses on visualization.) The session
+starting with (\*) can be made as exercise for students’ practice.
