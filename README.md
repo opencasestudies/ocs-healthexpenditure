@@ -57,10 +57,11 @@ Foundation (KFF)](https://www.kff.org).
 
   - [Health Insurance Coverage of the Total
     Population](https://www.kff.org/other/state-indicator/total-population/)
-      - Includes years 2013-2016
+    (Includes years 2013-2016)
+
   - [Health Care Expenditures by State of Residence (in
     millions)](https://www.kff.org/other/state-indicator/health-care-expenditures-by-state-of-residence-in-millions/)
-      - Includes years 1991-2014
+    (Includes years 1991-2014)
 
 For educational purposes, the data have been downloaded and relative
 paths are used for this demonstration. **Note**: If students are not
